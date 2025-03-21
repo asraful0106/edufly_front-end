@@ -1,0 +1,6 @@
+/* For Using tailwind css */
+@import "tailwindcss";
+/* For Using DaisyUI */
+@plugin "daisyui" { 
+  themes: light --default;
+}

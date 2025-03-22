@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900');
+
+
+.page_404 {
+    padding: 40px 0;
+    background: #fff;
+}
+
+.page_404 img {
+    width: 100%;
+}
+
+.four_zero_four_bg {
+
+    background-image: url("/404_error.gif");
+    height: 400px;
+    background-position: center;
+}
+
+
+.four_zero_four_bg h1 {
+    font-size: 80px;
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.four_zero_four_bg h3 {
+    font-size: 80px;
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.link_404 {
+    color: #fff !important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    border-radius: 10px;
+    display: inline-block;
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.contant_box_404 {
+    margin-top: -50px;
+}

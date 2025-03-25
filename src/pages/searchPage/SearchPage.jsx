@@ -33,7 +33,7 @@ const SearchPage = () => {
         // </div>
         <div className='flex flex-col min-h-screen bg-[#eeeeee]'>
             {/* Navigation */}
-            <Navigation />
+            <Navigation location="/"/>
             <main className='flex-grow'>
                 <div className='flex items-center justify-center' style={{ height: 'calc(100vh - 10rem)' }}>
 

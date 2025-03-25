@@ -1,6 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
-const Navigation = ({name, location}) => {
+const Navigation = ({ name, location }) => {
     console.log("Navigation location: ", location);
     return (
         <nav>
@@ -12,7 +13,7 @@ const Navigation = ({name, location}) => {
                         </div>
                         {/* Menu in Navigation bar */}
                         {
-                            location !== '/' &&
+                            (!location === '/' || !location === '/registration') &&
                             <ul
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-6 w-52 p-2 shadow">
@@ -34,7 +35,7 @@ const Navigation = ({name, location}) => {
                 <div className="navbar-center hidden lg:flex">
                     {/* Navigation bar links */}
                     {
-                        location !== '/' &&
+                        (!location === '/' || !location === '/registration') &&
                         <ul className="menu menu-horizontal px-1">
                             <li><a>Item 1</a></li>
                             <li>
@@ -51,7 +52,12 @@ const Navigation = ({name, location}) => {
                     }
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Register</a>
+                    {
+                        location === '/' ?
+                            <NavLink className="btn" to={'/registration'}>Register</NavLink>
+                            :
+                            <NavLink className="btn" to={'/'}>Search</NavLink>
+                    }
                 </div>
             </div>
         </nav>

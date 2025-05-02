@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router';
 
 const Navigation = ({ name, location }) => {
-    console.log("Navigation location: ", location);
+    // console.log("Navigation location: ", location);
     return (
         <nav>
             <div className="navbar bg-base-100" style={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}>

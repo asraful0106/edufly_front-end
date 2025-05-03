@@ -4,6 +4,8 @@ import Footer from '../../sharedComponent/footer/Footer';
 import "./SearchPage.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Lottie from 'lottie-react';
+import loadingLottie from '../../../public/lottie/loading.json'
 
 const SearchPage = () => {
     // Initilized AOS
@@ -22,15 +24,6 @@ const SearchPage = () => {
     }
 
     return (
-        // <div className='flex flex-col min-h-screen'>
-        //     {/* Navigation */}
-        //     <Navigation/>
-        //     <main className='flex-grow bg-amber-200'>
-        //         <h1>Main</h1>
-        //     </main>
-        //     {/* Footer */}
-        //     <Footer/>
-        // </div>
         <div className='flex flex-col min-h-screen bg-[#eeeeee]'>
             {/* Navigation */}
             <Navigation location="/"/>
@@ -53,7 +46,7 @@ const SearchPage = () => {
                                 </div>
 
                                 <div className='hover:cursor-pointer' onClick={() => handelAdvanceSearchClick()}>
-                                    <p className={`priventCopy font-medium ${isAdvanceSearch ? 'text-[#40b0d4]' : 'text-black'}`}>Advanch Search</p>
+                                    <p className={`priventCopy font-medium ${isAdvanceSearch ? 'text-[#40b0d4]' : 'text-black'}`}>Advance Search</p>
                                     {isAdvanceSearch &&
                                         <div className="divider p-0, m-0 h-0.5 bg-[#40b0d4]" data-aos="fade-right"></div>}
                                 </div>
@@ -109,6 +102,13 @@ const SearchPage = () => {
                             }
                         </div>
                     </form>
+                </div>
+                
+                {/* Loading animation */}
+                <div className='absolute left-0 right-0 top-[4.1rem] bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}>
+                    <div className='w-full h-full flex items-center justify-center' style={{color: "black"}}>
+                        <Lottie animationData={loadingLottie} loop={true} />
+                    </div>
                 </div>
             </main>
             {/* Footer */}

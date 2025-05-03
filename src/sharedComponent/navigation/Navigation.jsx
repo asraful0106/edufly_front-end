@@ -37,7 +37,7 @@ const Navigation = ({ name, location }) => {
                     {
                         (!location === '/' || !location === '/registration') &&
                         <ul className="menu menu-horizontal px-1">
-                            <li><a>Item 1</a></li>
+                            <li><a>pa</a></li>
                             <li>
                                 <details>
                                     <summary>Parent</summary>

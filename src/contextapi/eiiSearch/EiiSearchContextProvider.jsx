@@ -25,7 +25,7 @@ const EiiSearchContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <EiiContext.Provider value={{ data, loading, error, fetchData }}>
+        <EiiContext.Provider value={{ data, loading, error, fetchData, setData }}>
             {children}
         </EiiContext.Provider>
     );

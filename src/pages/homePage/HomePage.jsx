@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '../../sharedComponent/navigation/Navigation';
 import Footer from '../../sharedComponent/footer/Footer';
+import { Outlet } from 'react-router';
 
 const HomePage = () => {
     return (
@@ -8,6 +9,7 @@ const HomePage = () => {
             {/* Navigation */}
             <Navigation location="/home" />
             <main className='flex-grow'>
+                <Outlet/>
             </main>
             {/* Footer */}
             <Footer />

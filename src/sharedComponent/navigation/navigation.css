@@ -1,0 +1,7 @@
+.activeNav{
+    background-color: black;
+    color: white;
+}
+ul>li{
+    padding-left: 2px;
+}

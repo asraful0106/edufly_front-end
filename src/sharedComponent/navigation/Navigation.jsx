@@ -34,7 +34,8 @@ const Navigation = ({ name, location }) => {
                         }
                     </div>
                     {/* Company name or institution name */}
-                    <a className="btn btn-ghost text-xl">{name ? name : "Edufly"}</a>
+                    {/* (location !== '/' && location !== '/registration') && */}
+                    <a className="btn btn-ghost text-xl">{(location !== '/' && location !== '/registration') ? data?.name_eng : name ? name : "Edufly"}</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     {/* Navigation bar links  Desktop*/}

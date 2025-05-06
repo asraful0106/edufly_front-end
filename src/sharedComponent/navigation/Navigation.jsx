@@ -41,7 +41,7 @@ const Navigation = ({ name, location }) => {
                     {
                         (location !== '/' && location !== '/registration') &&
                         <ul className="menu menu-horizontal px-1">
-                                <li><NavLink to={`/${data?.eiin}`} end className={currentLocation.pathname === `/${data?.eiin}` ? 'activeNav' : ''}>Home</NavLink></li>
+                            <li><NavLink to={`/${data?.eiin}`} end className={currentLocation.pathname === `/${data?.eiin}` ? 'activeNav' : ''}>Home</NavLink></li>
                             {/* {console.log("Current Location: ", currentLocation)} */}
                             {/* <li>
                                 <details>
@@ -52,10 +52,10 @@ const Navigation = ({ name, location }) => {
                                     </ul>
                                 </details>
                             </li> */}
-                                <li><NavLink to={`/${data?.eiin}/teacher`} className={currentLocation.pathname === `/${data?.eiin}/teacher` ? 'activeNav' : ''}> Teachers</NavLink></li>
-                                <li><NavLink to={`/${data?.eiin}/notice`} className={currentLocation.pathname === `/${data?.eiin}/notice` ? 'activeNav' : ''}>Notice</NavLink></li>
-                                <li><NavLink to={`/${data?.eiin}/contact-us`} className={currentLocation.pathname === `/${data?.eiin}/contact-us` ? 'activeNav' : ''}>Contact Us</NavLink></li>
-                                <li><NavLink to={`/${data?.eiin}/dashboard`} className={currentLocation.pathname === `/${data?.eiin}/dashboard` ? 'activeNav' : ''}>Dashbord</NavLink></li>
+                            <li><NavLink to={`/${data?.eiin}/teacher`} className={currentLocation.pathname === `/${data?.eiin}/teacher` ? 'activeNav' : ''}> Teachers</NavLink></li>
+                            <li><NavLink to={`/${data?.eiin}/notice`} className={currentLocation.pathname === `/${data?.eiin}/notice` ? 'activeNav' : ''}>Notice</NavLink></li>
+                            <li><NavLink to={`/${data?.eiin}/contact-us`} className={currentLocation.pathname === `/${data?.eiin}/contact-us` ? 'activeNav' : ''}>Contact Us</NavLink></li>
+                            <li><NavLink to={`/${data?.eiin}/dashboard`} className={currentLocation.pathname === `/${data?.eiin}/dashboard` ? 'activeNav' : ''}>Dashbord</NavLink></li>
                         </ul>
                     }
                 </div>
@@ -66,6 +66,22 @@ const Navigation = ({ name, location }) => {
                             :
                             <NavLink className="btn" onClick={() => setData(null)} to={'/'}>Search</NavLink>
                     }
+
+                    {/* For Profile */}
+                    <div className="dropdown dropdown-end ml-2">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img
+                                    alt="Tailwind CSS Navbar component"
+                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            </div>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow mt-4">
+                            <li><a>Login</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>

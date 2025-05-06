@@ -7,6 +7,9 @@ import Registration from '../pages/registrationPage/Registration';
 import HomePage from '../pages/homePage/HomePage';
 import HomeComponent from '../sharedComponent/homeComponent/HomeComponent';
 import TeacherComponent from '../sharedComponent/teachersComponent/TeacherComponent';
+import NoticeComponent from '../sharedComponent/notice/NoticeComponent';
+import ContactUsComponent from '../sharedComponent/contactUs/ContactUsComponent';
+import DashboardComponent from '../sharedComponent/dashboard/DashboardComponent';
 
 const AppRoutes = () => {
     return (
@@ -18,6 +21,9 @@ const AppRoutes = () => {
                     <Route path='/:id' element={<HomePage />}>
                         <Route path='/:id' element={<HomeComponent />} />
                         <Route path='/:id/teacher' element={<TeacherComponent />} />
+                        <Route path='/:id/notice' element={<NoticeComponent />} />
+                        <Route path='/:id/contact-us' element={<ContactUsComponent />} />
+                        <Route path='/:id/dashboard' element={<DashboardComponent />} />
                     </Route>
                 </Route>
                 <Route path='*' element={<ErrorPage />} />

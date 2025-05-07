@@ -1,0 +1,182 @@
+[
+    {
+        "id": "a1b2c3",
+        "title": "Campus Closure Notice",
+        "notice_type": "Alert",
+        "view": 150,
+        "message": "Due to unforeseen circumstances, the entire campus will be closed on May 10 for essential maintenance work. This closure affects all academic buildings, libraries, and recreational facilities. Students and staff are advised to refrain from visiting the campus during this period. Remote learning options will be provided for all scheduled classes, and further details will be shared via email. We apologize for any inconvenience caused and appreciate your cooperation.",
+        "created_at": "2025-05-01T10:00:00Z",
+        "updated_at": "2025-05-01T10:00:00Z"
+    },
+    {
+        "id": "b2c3d4",
+        "title": "Exam Schedule Update",
+        "notice_type": "Update",
+        "view": 320,
+        "message": "The final examination schedule for Spring 2025 has been revised due to scheduling conflicts. All students are required to check the updated timetable on the student portal by May 10. Please ensure you note the new dates, times, and venues for your exams. If you encounter any issues or conflicts, contact the registrar’s office immediately. We aim to ensure a smooth examination process for all students.",
+        "created_at": "2025-04-28T14:30:00Z",
+        "updated_at": "2025-04-29T09:15:00Z"
+    },
+    {
+        "id": "c3d4e5",
+        "title": "Library Hours Extended",
+        "notice_type": "Info",
+        "view": 85,
+        "message": "In response to student feedback, the main library will extend its operating hours to 10 PM during the finals week, starting May 12. This change is intended to provide additional study time for students preparing for exams. Quiet study zones and group study rooms will remain available, and library staff will be on hand to assist. Please adhere to library policies to maintain a conducive environment for all users.",
+        "created_at": "2025-05-02T08:45:00Z",
+        "updated_at": "2025-05-02T08:45:00Z"
+    },
+    {
+        "id": "d4e5f6",
+        "title": "Guest Lecture Series",
+        "notice_type": "Event",
+        "view": 200,
+        "message": "We are excited to announce a guest lecture series on advancements in artificial intelligence, scheduled for this Friday, May 9, at 3 PM in the main auditorium. The speaker, a renowned expert in the field, will discuss the future of AI in education and industry. This event is open to all students and faculty. Registration is required due to limited seating. Visit the event page on the university website to secure your spot.",
+        "created_at": "2025-05-03T12:00:00Z",
+        "updated_at": "2025-05-03T12:00:00Z"
+    },
+    {
+        "id": "e5f6g7",
+        "title": "Parking Lot Maintenance",
+        "notice_type": "Maintenance",
+        "view": 50,
+        "message": "Please be informed that Parking Lot B will undergo scheduled maintenance on May 12, from 7 AM to 5 PM. During this time, the lot will be inaccessible to all vehicles. Alternative parking is available in Lots A and C, and shuttle services will operate to transport students and staff to main campus buildings. We recommend planning your commute accordingly to avoid delays. Thank you for your understanding.",
+        "created_at": "2025-05-04T09:20:00Z",
+        "updated_at": "2025-05-04T09:20:00Z"
+    },
+    {
+        "id": "f6g7h8",
+        "title": "Scholarship Deadline",
+        "notice_type": "Reminder",
+        "view": 400,
+        "message": "The deadline to apply for the 2025-2026 academic year scholarships is fast approaching on May 15. Eligible students are encouraged to submit their applications through the university’s scholarship portal. Ensure all required documents, including recommendation letters and transcripts, are uploaded by the deadline. Late submissions will not be considered. For assistance, contact the financial aid office during regular business hours.",
+        "created_at": "2025-05-05T11:10:00Z",
+        "updated_at": "2025-05-05T11:10:00Z"
+    },
+    {
+        "id": "g7h8i9",
+        "title": "Career Fair 2025",
+        "notice_type": "Event",
+        "view": 600,
+        "message": "The annual Career Fair 2025 is scheduled for May 20 in the main hall, from 10 AM to 4 PM. Over 50 top employers from various industries will be present to discuss job and internship opportunities. Students are advised to bring updated resumes and dress professionally. Pre-registration is recommended to access exclusive workshops and networking sessions. Visit the career services website for more details and to register.",
+        "created_at": "2025-05-06T15:00:00Z",
+        "updated_at": "2025-05-06T15:00:00Z"
+    },
+    {
+        "id": "h8i9j0",
+        "title": "Network Outage Alert",
+        "notice_type": "Alert",
+        "view": 120,
+        "message": "A planned network maintenance will cause a temporary Wi-Fi outage across campus on May 8, from 2 AM to 4 AM. During this period, all online services, including the student portal and library databases, will be unavailable. We recommend completing any critical online tasks before the outage begins. The IT department will ensure the network is restored as quickly as possible. Thank you for your patience.",
+        "created_at": "2025-05-07T07:30:00Z",
+        "updated_at": "2025-05-07T07:30:00Z"
+    },
+    {
+        "id": "i9j0k1",
+        "title": "New Course Offerings",
+        "notice_type": "Update",
+        "view": 180,
+        "message": "The academic department has introduced several new courses for the Fall 2025 semester, including topics in data science, sustainable engineering, and digital marketing. Students can now view the full course catalog on the university portal and consult with academic advisors to plan their schedules. Early registration is encouraged to secure spots in high-demand courses. Check the portal for prerequisites and enrollment details.",
+        "created_at": "2025-05-01T16:45:00Z",
+        "updated_at": "2025-05-02T10:00:00Z"
+    },
+    {
+        "id": "j0k1l2",
+        "title": "Health and Safety Guidelines",
+        "notice_type": "Info",
+        "view": 90,
+        "message": "The university has updated its health and safety guidelines in response to recent public health recommendations. All students, faculty, and staff are required to review the new protocols, which include mask-wearing in indoor public spaces and regular sanitization of shared areas. Compliance is mandatory to ensure a safe campus environment. The full guidelines are available on the university website.",
+        "created_at": "2025-05-03T13:20:00Z",
+        "updated_at": "2025-05-03T13:20:00Z"
+    },
+    {
+        "id": "k1l2m3",
+        "title": "Club Recruitment Drive",
+        "notice_type": "Event",
+        "view": 250,
+        "message": "The annual student club recruitment drive is set for May 18, from 11 AM to 3 PM in the student union. Over 30 clubs, ranging from academic to recreational, will showcase their activities and recruit new members. This is a great opportunity to get involved, meet new people, and enhance your campus experience. Refreshments will be provided, and no registration is required. Join us!",
+        "created_at": "2025-05-04T14:00:00Z",
+        "updated_at": "2025-05-04T14:00:00Z"
+    },
+    {
+        "id": "l2m3n4",
+        "title": "Power Outage Notice",
+        "notice_type": "Alert",
+        "view": 300,
+        "message": "A scheduled power outage will affect Building C on May 11, from 8 AM to 2 PM, to facilitate electrical system upgrades. During this time, all classes and activities in Building C will be relocated or conducted online. Affected departments will communicate specific arrangements via email. We apologize for the inconvenience and are working to minimize disruptions. Thank you for your cooperation.",
+        "created_at": "2025-05-05T09:00:00Z",
+        "updated_at": "2025-05-05T09:00:00Z"
+    },
+    {
+        "id": "m3n4o5",
+        "title": "Faculty Meeting",
+        "notice_type": "Info",
+        "view": 60,
+        "message": "A mandatory faculty meeting is scheduled for May 9 at 3 PM in the conference center. The agenda includes discussions on curriculum updates, research funding opportunities, and campus safety measures. All faculty members are required to attend, and department heads should submit reports by May 7. For those unable to attend in person, a virtual attendance option will be provided. Contact the dean’s office for details.",
+        "created_at": "2025-05-06T10:30:00Z",
+        "updated_at": "2025-05-06T10:30:00Z"
+    },
+    {
+        "id": "n4o5p6",
+        "title": "Course Registration Opens",
+        "notice_type": "Reminder",
+        "view": 500,
+        "message": "Registration for Fall 2025 courses opens on May 14 at 8 AM. Students are encouraged to log in to the student portal early to secure their preferred classes. Ensure your account is in good standing and all holds are cleared before registration begins. Academic advisors will be available for consultations starting May 10. Visit the registrar’s website for a step-by-step registration guide.",
+        "created_at": "2025-05-07T12:15:00Z",
+        "updated_at": "2025-05-07T12:15:00Z"
+    },
+    {
+        "id": "o5p6q7",
+        "title": "Sports Tryouts",
+        "notice_type": "Event",
+        "view": 220,
+        "message": "Tryouts for the university soccer team are scheduled for May 16 at 4 PM on the main athletic field. All students interested in joining the team must register in advance through the athletics department website and bring appropriate gear. The coaching staff will evaluate players based on skills, teamwork, and fitness. Successful candidates will be notified by May 18. Don’t miss this opportunity!",
+        "created_at": "2025-05-01T11:00:00Z",
+        "updated_at": "2025-05-01T11:00:00Z"
+    },
+    {
+        "id": "p6q7r8",
+        "title": "Campus Safety Drill",
+        "notice_type": "Alert",
+        "view": 140,
+        "message": "A mandatory campus-wide safety drill is scheduled for May 13 at 10 AM. This exercise will simulate an emergency evacuation to ensure all students and staff are familiar with safety procedures. Please follow instructions from campus security and evacuate buildings promptly when the alarm sounds. The drill is expected to last approximately 30 minutes. Review the safety manual on the university website for preparation tips.",
+        "created_at": "2025-05-02T09:50:00Z",
+        "updated_at": "2025-05-02T09:50:00Z"
+    },
+    {
+        "id": "q7r8s9",
+        "title": "Guest Speaker Event",
+        "notice_type": "Event",
+        "view": 175,
+        "message": "Join us for a guest speaker event on sustainability and environmental conservation on May 17 at 2 PM in the lecture hall. The speaker, an award-winning environmentalist, will share insights on sustainable practices and their impact on global ecosystems. This event is open to all and includes a Q&A session. Register online to reserve your seat and receive event updates. Don’t miss this inspiring talk!",
+        "created_at": "2025-05-03T15:30:00Z",
+        "updated_at": "2025-05-03T15:30:00Z"
+    },
+    {
+        "id": "r8s9t0",
+        "title": "Tuition Payment Reminder",
+        "notice_type": "Reminder",
+        "view": 450,
+        "message": "The deadline for tuition payments for the upcoming semester is May 20. Students are required to settle their balances through the student portal or at the bursar’s office. Late payments will incur a penalty, and holds may be placed on accounts, preventing course registration. Financial aid recipients should confirm their awards are applied. Contact the bursar’s office for payment plans or assistance.",
+        "created_at": "2025-05-04T08:00:00Z",
+        "updated_at": "2025-05-04T08:00:00Z"
+    },
+    {
+        "id": "s9t0u1",
+        "title": "Bookstore Sale",
+        "notice_type": "Info",
+        "view": 110,
+        "message": "The campus bookstore is hosting an end-of-semester sale starting May 21, with discounts of up to 50% on textbooks, apparel, and supplies. This is a great opportunity to stock up for the next semester or purchase university merchandise. The sale will run through May 25, both in-store and online. Visit the bookstore website for a full list of discounted items and special offers.",
+        "created_at": "2025-05-05T16:20:00Z",
+        "updated_at": "2025-05-05T16:20:00Z"
+    },
+    {
+        "id": "t0u1v2",
+        "title": "Graduation Ceremony",
+        "notice_type": "Event",
+        "view": 700,
+        "message": "The 2025 graduation ceremony is scheduled for May 25 at 10 AM in the university stadium. Graduating students must confirm their attendance and complete all clearance requirements by May 15. Tickets for guests are limited, so please register early through the graduation portal. The ceremony will be live-streamed for those unable to attend in person. Check the university website for rehearsal schedules and cap-and-gown pickup details.",
+        "created_at": "2025-05-06T13:45:00Z",
+        "updated_at": "2025-05-06T13:45:00Z"
+    }
+]

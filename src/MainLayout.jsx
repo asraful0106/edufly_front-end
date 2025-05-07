@@ -1,12 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import EiiSearchContextProvider from './contextapi/eiiSearch/EiiSearchContextProvider';
+import NoticeContextProvider from './contextapi/notice/NoticeContextProvider';
 
 const MainLayout = () => {
     return (
-        <EiiSearchContextProvider>
-            <Outlet/>
-        </EiiSearchContextProvider>
+        // Context for Notice
+        <NoticeContextProvider>
+            {/* Context for Search */}
+            <EiiSearchContextProvider>
+                <Outlet />
+            </EiiSearchContextProvider>
+        </NoticeContextProvider>
     );
 };
 

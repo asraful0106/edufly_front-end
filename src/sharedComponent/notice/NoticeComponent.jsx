@@ -1,9 +1,15 @@
 import React, { useContext } from 'react';
 import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { MdOutlinePostAdd } from "react-icons/md";
+import NoticeContext from '../../contextapi/notice/NoticeContext';
+import EachNotice from './EachNotice';
 
 const NoticeComponent = () => {
     const { data } = useContext(EiiContext);
+    const { noticeData, noticeError, noticeLoading, fetchNoticeData } = useContext(NoticeContext);
+    if (!noticeData) {
+        fetchNoticeData('/public/fakeData/notice.json');
+    }
     const foundingDate = new Date(data?.founding_date);
     return (
         <div>
@@ -51,6 +57,14 @@ const NoticeComponent = () => {
                             Create New Notice
                         </button>
                     </div>
+                </div>
+            </div>
+            {/* Notice Container */}
+            <div>
+                <div className='flex flex-col gap-4 mt-[4rem] mx-[9rem]'>
+                    {
+                        noticeData?.map(eachData => <EachNotice eachData={eachData} instituteName={data?.name_eng} />)
+                    }
                 </div>
             </div>
         </div>

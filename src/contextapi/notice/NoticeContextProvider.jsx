@@ -1,13 +1,13 @@
 import axios from 'axios';
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useState } from 'react';
 import NoticeContext from './NoticeContext';
 
 const NoticeContextProvider = ({ children }) => {
-    const [noticeData, setNoticeData] = useContext(null);
-    const [noticeLoading, setNoticeLoading] = useContext(false);
-    const [noticeError, setNoticeError] = useContext(null);
+    const [noticeData, setNoticeData] = useState(null);
+    const [noticeLoading, setNoticeLoading] = useState(false);
+    const [noticeError, setNoticeError] = useState(null);
 
-    const fetcNoticeData = useCallback(async (url) => {
+    const fetchNoticeData = useCallback(async (url) => {
         setNoticeLoading(true);
         setNoticeError(null);
 
@@ -27,7 +27,7 @@ const NoticeContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <NoticeContext.Provider value={{ noticeData, noticeError, noticeLoading, fetcNoticeData }}>
+        <NoticeContext.Provider value={{ noticeData, noticeError, noticeLoading, fetchNoticeData }}>
             {children}
         </NoticeContext.Provider>
     );

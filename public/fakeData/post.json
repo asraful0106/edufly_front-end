@@ -1,0 +1,631 @@
+[
+    {
+        "id": "uuid-1",
+        "institution_id": "INST_EIIN_001",
+        "title": "Sports Day Highlights",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id metus vel risus congue ullamcorper sed sed felis. Pellentesque gravida velit urna, vehicula euismod tortor rhoncus in. Cras et fringilla augue. Nullam lectus tortor, mattis vel facilisis in, iaculis ac purus. Pellentesque cursus orci sed blandit bibendum. Integer consectetur elit et congue molestie. Morbi eu erat sit amet neque tincidunt ornare sed eget enim. Morbi feugiat tempor nulla ut ultricies. Pellentesque sit amet suscipit massa. Maecenas sit amet elementum orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed ultricies quis nibh quis lobortis. Nulla sagittis dolor lectus. Etiam tristique, elit eu iaculis pulvinar, augue ligula blandit purus, vitae aliquam felis metus ac tellus. Morbi eu risus quis nisl tristique tempor.Integer et dapibus ante. Aenean et tortor pharetra, lobortis tortor sit amet, rhoncus risus. Sed consequat lorem eu quam pretium, nec gravida est ullamcorper. Donec dictum a neque non hendrerit. Cras vel luctus velit, sit amet iaculis massa. Nulla eu odio ut neque pellentesque malesuada. Cras mattis, arcu et hendrerit suscipit, lorem lacus pretium ex, nec pretium nunc leo id est. Duis et maximus nisi. Phasellus at quam sit amet ligula pharetra venenatis. Sed eu ex vel erat semper elementum mollis at elit. Phasellus vel est risus. Aenean egestas, nibh ac mattis semper, velit ante rutrum mauris, ut tincidunt magna lacus blandit risus. Morbi et odio id leo hendrerit vestibulum. Pellentesque bibendum, dui sit amet varius sollicitudin, augue mi porttitor arcu, at congue ex augue efficitur risus. Sed semper neque vitae cursus blandit. In consectetur nibh eros, sed consequat neque dictum in. Sed pellentesque condimentum erat vel aliquam. Cras nec luctus eros. Vivamus eleifend nulla nec odio imperdiet, quis porta libero suscipit. Curabitur congue purus ac lacus dignissim, laoreet eleifend sem molestie. Nunc rutrum feugiat luctus. Nunc elementum suscipit magna. Duis nec ex mollis, iaculis sem non, porta eros. Sed volutpat orci cursus nisl faucibus facilisis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam turpis mauris, commodo ut porttitor eu, euismod non ante. Cras ac dictum erat.",
+        "created_at": "2024-08-10T09:00:00Z",
+        "updated_at": "2025-04-15T12:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-1",
+                "post_id": "uuid-1",
+                "image_link": "https://picsum.photos/1000?random=123",
+                "created_at": "2024-08-10T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-2",
+                "post_id": "uuid-1",
+                "image_link": "https://picsum.photos/1000?random=456",
+                "created_at": "2024-08-10T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-3",
+                "post_id": "uuid-3",
+                "image_link": "https://picsum.photos/1000?random=123",
+                "created_at": "2024-08-10T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-4",
+                "post_id": "uuid-4",
+                "image_link": "https://picsum.photos/1000?random=456",
+                "created_at": "2024-08-10T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-5",
+                "post_id": "uuid-5",
+                "image_link": "https://picsum.photos/1000?random=456",
+                "created_at": "2024-08-10T09:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-2",
+        "institution_id": "INST_EIIN_001",
+        "title": "Science Fair 2024",
+        "description": "The science fair featured innovative student projects like a solar car and a water purifier. Judges were impressed by the creativity and effort. Over 200 visitors attended the event. Awards were given in multiple categories.",
+        "created_at": "2024-09-15T10:00:00Z",
+        "updated_at": "2025-05-01T14:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-3",
+        "institution_id": "INST_EIIN_001",
+        "title": "Cultural Night",
+        "description": "Our cultural night was a vibrant celebration of diversity, featuring student performances in dance, music, and drama. Over 300 attendees enjoyed traditional and modern acts. The event highlighted the talents of our students and fostered community spirit. Food stalls offered global cuisines, adding to the festive atmosphere. Preparations took weeks, with students and teachers collaborating closely. The night ended with a spectacular fireworks display.",
+        "created_at": "2024-11-20T18:00:00Z",
+        "updated_at": "2025-03-20T16:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-3",
+                "post_id": "uuid-3",
+                "image_link": "https://picsum.photos/1000?random=789",
+                "created_at": "2024-11-20T18:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-4",
+        "institution_id": "INST_EIIN_001",
+        "title": "Tree Plantation",
+        "description": "Students planted 100 trees to promote sustainability. The event was inspiring and educational.",
+        "created_at": "2024-07-05T08:00:00Z",
+        "updated_at": "2025-02-10T10:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-4",
+                "post_id": "uuid-4",
+                "image_link": "https://picsum.photos/1000?random=234",
+                "created_at": "2024-07-05T08:00:00Z"
+            },
+            {
+                "id": "img-uuid-5",
+                "post_id": "uuid-4",
+                "image_link": "https://picsum.photos/1000?random=567",
+                "created_at": "2024-07-05T08:00:00Z"
+            },
+            {
+                "id": "img-uuid-6",
+                "post_id": "uuid-4",
+                "image_link": "https://picsum.photos/1000?random=890",
+                "created_at": "2024-07-05T08:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-5",
+        "institution_id": "INST_EIIN_001",
+        "title": "Math Olympiad",
+        "description": "Our students excelled at the regional Math Olympiad, securing top positions. The competition tested their problem-solving skills. Parents and teachers celebrated the achievement. A special ceremony honored the winners.",
+        "created_at": "2024-10-10T12:00:00Z",
+        "updated_at": "2025-04-25T09:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-7",
+                "post_id": "uuid-5",
+                "image_link": "https://picsum.photos/1000?random=321",
+                "created_at": "2024-10-10T12:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-6",
+        "institution_id": "INST_EIIN_001",
+        "title": "Art Exhibition",
+        "description": "The art club hosted a stunning exhibition showcasing student paintings and sculptures. Over 50 artworks were displayed, reflecting diverse themes. Local artists judged the entries, awarding prizes in multiple categories. The event drew a large crowd, including parents and community members. Students gained valuable feedback on their work. The exhibition ran for three days, with workshops held alongside.",
+        "created_at": "2024-12-05T11:00:00Z",
+        "updated_at": "2025-05-05T15:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-8",
+                "post_id": "uuid-6",
+                "image_link": "https://picsum.photos/1000?random=654",
+                "created_at": "2024-12-05T11:00:00Z"
+            },
+            {
+                "id": "img-uuid-9",
+                "post_id": "uuid-6",
+                "image_link": "https://picsum.photos/1000?random=987",
+                "created_at": "2024-12-05T11:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-7",
+        "institution_id": "INST_EIIN_001",
+        "title": "Debate Victory",
+        "description": "Our debate team won first place in the inter-school competition.",
+        "created_at": "2024-06-15T14:00:00Z",
+        "updated_at": "2025-01-20T10:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-8",
+        "institution_id": "INST_EIIN_001",
+        "title": "Parent-Teacher Meet",
+        "description": "The parent-teacher meeting discussed student progress and upcoming events. Teachers shared insights on academic performance. Parents appreciated the open communication. Refreshments were served afterward.",
+        "created_at": "2024-09-20T15:00:00Z",
+        "updated_at": "2025-03-25T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-10",
+                "post_id": "uuid-8",
+                "image_link": "https://picsum.photos/1000?random=432",
+                "created_at": "2024-09-20T15:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-9",
+        "institution_id": "INST_EIIN_001",
+        "title": "Coding Bootcamp",
+        "description": "A week-long coding bootcamp introduced students to Python and web development. Industry experts led hands-on sessions, guiding students through real-world projects. Participants built simple apps and websites, gaining practical skills. The bootcamp ended with a showcase where students presented their work. Over 40 students participated, sparking interest in tech careers. Feedback was overwhelmingly positive, with plans for a follow-up event.",
+        "created_at": "2024-08-05T09:00:00Z",
+        "updated_at": "2025-02-25T13:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-11",
+                "post_id": "uuid-9",
+                "image_link": "https://picsum.photos/1000?random=765",
+                "created_at": "2024-08-05T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-12",
+                "post_id": "uuid-9",
+                "image_link": "https://picsum.photos/1000?random=198",
+                "created_at": "2024-08-05T09:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-10",
+        "institution_id": "INST_EIIN_001",
+        "title": "Charity Fundraiser",
+        "description": "Students raised funds for local orphanages through bake sales and performances.",
+        "created_at": "2024-11-10T10:00:00Z",
+        "updated_at": "2025-04-10T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-13",
+                "post_id": "uuid-10",
+                "image_link": "https://picsum.photos/1000?random=543",
+                "created_at": "2024-11-10T10:00:00Z"
+            },
+            {
+                "id": "img-uuid-14",
+                "post_id": "uuid-10",
+                "image_link": "https://picsum.photos/1000?random=876",
+                "created_at": "2024-11-10T10:00:00Z"
+            },
+            {
+                "id": "img-uuid-15",
+                "post_id": "uuid-10",
+                "image_link": "https://picsum.photos/1000?random=210",
+                "created_at": "2024-11-10T10:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-11",
+        "institution_id": "INST_EIIN_001",
+        "title": "Library Upgrade",
+        "description": "The school library was renovated with new bookshelves and a digital catalog. Students now have better access to resources. The upgrade was funded by alumni donations. A reopening ceremony was held.",
+        "created_at": "2024-07-15T12:00:00Z",
+        "updated_at": "2025-01-15T09:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-12",
+        "institution_id": "INST_EIIN_001",
+        "title": "Drama Performance",
+        "description": "The drama club performed 'Romeo and Juliet' to a packed audience. The set design and costumes were student-made. The performance received rave reviews.",
+        "created_at": "2024-10-25T19:00:00Z",
+        "updated_at": "2025-05-02T14:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-16",
+                "post_id": "uuid-12",
+                "image_link": "https://picsum.photos/1000?random=678",
+                "created_at": "2024-10-25T19:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-13",
+        "institution_id": "INST_EIIN_001",
+        "title": "Health Workshop",
+        "description": "A health workshop educated students on mental health and nutrition. Guest speakers from the medical field shared practical tips. Interactive sessions included mindfulness exercises and dietary planning. The event was well-attended, with students asking thoughtful questions. Organizers plan to make it an annual event. Resources were provided for ongoing support.",
+        "created_at": "2024-09-10T11:00:00Z",
+        "updated_at": "2025-03-15T10:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-17",
+                "post_id": "uuid-13",
+                "image_link": "https://picsum.photos/1000?random=345",
+                "created_at": "2024-09-10T11:00:00Z"
+            },
+            {
+                "id": "img-uuid-18",
+                "post_id": "uuid-13",
+                "image_link": "https://picsum.photos/1000?random=901",
+                "created_at": "2024-09-10T11:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-14",
+        "institution_id": "INST_EIIN_001",
+        "title": "Chess Tournament",
+        "description": "Our chess team won the regional tournament. Players showed great strategy.",
+        "created_at": "2024-08-20T13:00:00Z",
+        "updated_at": "2025-02-05T12:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-15",
+        "institution_id": "INST_EIIN_001",
+        "title": "Career Counseling",
+        "description": "A career counseling session guided students on academic and professional paths. Experts discussed various industries and skills. Students explored their interests through interactive activities.",
+        "created_at": "2024-12-10T10:00:00Z",
+        "updated_at": "2025-04-15T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-19",
+                "post_id": "uuid-15",
+                "image_link": "https://picsum.photos/1000?random=456",
+                "created_at": "2024-12-10T10:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-16",
+        "institution_id": "INST_EIIN_001",
+        "title": "Music Concert",
+        "description": "The school band performed a mix of classical and modern music, captivating the audience. The concert featured solo and group performances, showcasing diverse talents. Guest musicians joined for a special segment, adding excitement. Over 200 people attended, filling the auditorium. The event was livestreamed for remote viewers. Rehearsals spanned months, reflecting the students’ dedication. Proceeds supported music scholarships.",
+        "created_at": "2024-11-15T17:00:00Z",
+        "updated_at": "2025-05-07T13:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-20",
+                "post_id": "uuid-16",
+                "image_link": "https://picsum.photos/1000?random=789",
+                "created_at": "2024-11-15T17:00:00Z"
+            },
+            {
+                "id": "img-uuid-21",
+                "post_id": "uuid-16",
+                "image_link": "https://picsum.photos/1000?random=123",
+                "created_at": "2024-11-15T17:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-17",
+        "institution_id": "INST_EIIN_001",
+        "title": "Science Club",
+        "description": "The science club planned a planetarium trip. Experiments were discussed.",
+        "created_at": "2024-06-20T14:00:00Z",
+        "updated_at": "2025-01-25T10:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-18",
+        "institution_id": "INST_EIIN_001",
+        "title": "Community Service",
+        "description": "Students cleaned a local park, promoting civic responsibility. The activity fostered teamwork and environmental awareness. Local residents praised the effort. A picnic followed the cleanup.",
+        "created_at": "2024-10-05T09:00:00Z",
+        "updated_at": "2025-03-20T12:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-22",
+                "post_id": "uuid-18",
+                "image_link": "https://picsum.photos/1000?random=234",
+                "created_at": "2024-10-05T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-23",
+                "post_id": "uuid-18",
+                "image_link": "https://picsum.photos/1000?random=567",
+                "created_at": "2024-10-05T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-24",
+                "post_id": "uuid-18",
+                "image_link": "https://picsum.photos/1000?random=890",
+                "created_at": "2024-10-05T09:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-19",
+        "institution_id": "INST_EIIN_001",
+        "title": "Poetry Recital",
+        "description": "Students recited original and classic poems, showcasing literary talent. The event was held in the school auditorium. A guest poet shared insights. Refreshments were served afterward.",
+        "created_at": "2024-09-05T15:00:00Z",
+        "updated_at": "2025-02-15T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-25",
+                "post_id": "uuid-19",
+                "image_link": "https://picsum.photos/1000?random=321",
+                "created_at": "2024-09-05T15:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-20",
+        "institution_id": "INST_EIIN_001",
+        "title": "Robotics Workshop",
+        "description": "A robotics workshop taught students to build and program simple robots. Industry professionals led the sessions, providing hands-on experience. Students worked in teams, fostering collaboration and creativity. Projects included robotic arms and autonomous vehicles. The workshop spanned three days, with a final competition showcasing the best designs. Over 30 students participated, gaining skills for future tech careers. Parents attended the closing event, impressed by the results.",
+        "created_at": "2024-08-15T10:00:00Z",
+        "updated_at": "2025-03-10T13:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-26",
+                "post_id": "uuid-20",
+                "image_link": "https://picsum.photos/1000?random=654",
+                "created_at": "2024-08-15T10:00:00Z"
+            },
+            {
+                "id": "img-uuid-27",
+                "post_id": "uuid-20",
+                "image_link": "https://picsum.photos/1000?random=987",
+                "created_at": "2024-08-15T10:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-21",
+        "institution_id": "INST_EIIN_001",
+        "title": "Book Fair",
+        "description": "The book fair offered novels, textbooks, and comics. Students enjoyed browsing.",
+        "created_at": "2024-11-25T09:00:00Z",
+        "updated_at": "2025-05-09T10:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-22",
+        "institution_id": "INST_EIIN_001",
+        "title": "Photography Contest",
+        "description": "Students submitted photos for a 'Nature in Focus' contest. Winning entries were displayed in the school gallery. Judges included professional photographers. The event inspired creativity.",
+        "created_at": "2024-07-10T12:00:00Z",
+        "updated_at": "2025-01-20T14:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-28",
+                "post_id": "uuid-22",
+                "image_link": "https://picsum.photos/1000?random=432",
+                "created_at": "2024-07-10T12:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-23",
+        "institution_id": "INST_EIIN_001",
+        "title": "Yoga Day",
+        "description": "A yoga and wellness day promoted mindfulness and stress relief. Professional instructors led sessions for students and staff. Activities included meditation, breathing exercises, and yoga poses tailored for beginners. The event took place outdoors, creating a calming atmosphere. Participants received wellness guides to continue practices at home. Over 100 students joined, reporting improved focus. The school plans to integrate yoga into the curriculum.",
+        "created_at": "2024-10-15T08:00:00Z",
+        "updated_at": "2025-04-05T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-29",
+                "post_id": "uuid-23",
+                "image_link": "https://picsum.photos/1000?random=765",
+                "created_at": "2024-10-15T08:00:00Z"
+            },
+            {
+                "id": "img-uuid-30",
+                "post_id": "uuid-23",
+                "image_link": "https://picsum.photos/1000?random=198",
+                "created_at": "2024-10-15T08:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-24",
+        "institution_id": "INST_EIIN_001",
+        "title": "Astronomy Night",
+        "description": "Students observed stars through telescopes with a local astronomer. The event was educational.",
+        "created_at": "2024-09-25T20:00:00Z",
+        "updated_at": "2025-03-10T12:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-31",
+                "post_id": "uuid-24",
+                "image_link": "https://picsum.photos/1000?random=543",
+                "created_at": "2024-09-25T20:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-25",
+        "institution_id": "INST_EIIN_001",
+        "title": "History Quiz",
+        "description": "A history quiz engaged students in a fun competition. Questions covered global events. Prizes were awarded to top teams. The event sparked interest in history.",
+        "created_at": "2024-08-25T11:00:00Z",
+        "updated_at": "2025-02-10T10:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-26",
+        "institution_id": "INST_EIIN_001",
+        "title": "Gardening Club",
+        "description": "The gardening club planted a new flower bed and maintained the vegetable garden. Members learned about sustainable practices. The produce was donated to a local charity.",
+        "created_at": "2024-07-20T09:00:00Z",
+        "updated_at": "2025-01-15T12:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-32",
+                "post_id": "uuid-26",
+                "image_link": "https://picsum.photos/1000?random=876",
+                "created_at": "2024-07-20T09:00:00Z"
+            },
+            {
+                "id": "img-uuid-33",
+                "post_id": "uuid-26",
+                "image_link": "https://picsum.photos/1000?random=210",
+                "created_at": "2024-07-20T09:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-27",
+        "institution_id": "INST_EIIN_001",
+        "title": "Charity Drive",
+        "description": "Students collected blankets and clothes for local shelters. The drive was a success.",
+        "created_at": "2024-12-15T10:00:00Z",
+        "updated_at": "2025-05-10T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-34",
+                "post_id": "uuid-27",
+                "image_link": "https://picsum.photos/1000?random=678",
+                "created_at": "2024-12-15T10:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-28",
+        "institution_id": "INST_EIIN_001",
+        "title": "Language Day",
+        "description": "Language Day celebrated linguistic diversity with skits and songs in multiple languages. Students performed in Spanish, French, and local dialects, showcasing their skills. Guest speakers discussed the importance of multilingualism in a globalized world. The event included cultural displays and language games, engaging the audience. Over 150 students participated, with parents in attendance. The day ended with a poetry reading in various languages. Plans are underway for a bigger event next year.",
+        "created_at": "2024-11-05T12:00:00Z",
+        "updated_at": "2025-04-20T13:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-35",
+                "post_id": "uuid-28",
+                "image_link": "https://picsum.photos/1000?random=345",
+                "created_at": "2024-11-05T12:00:00Z"
+            },
+            {
+                "id": "img-uuid-36",
+                "post_id": "uuid-28",
+                "image_link": "https://picsum.photos/1000?random=901",
+                "created_at": "2024-11-05T12:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-29",
+        "institution_id": "INST_EIIN_001",
+        "title": "Tech Fair",
+        "description": "Students showcased apps and gadgets at the tech fair. Visitors were impressed.",
+        "created_at": "2024-10-20T09:00:00Z",
+        "updated_at": "2025-03-25T10:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-30",
+        "institution_id": "INST_EIIN_001",
+        "title": "Sports Awards",
+        "description": "The sports award ceremony honored outstanding athletes. Medals were given for various sports. Speeches highlighted teamwork and dedication. A slideshow recapped the season’s highlights.",
+        "created_at": "2024-12-20T15:00:00Z",
+        "updated_at": "2025-05-08T12:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-37",
+                "post_id": "uuid-30",
+                "image_link": "https://picsum.photos/1000?random=456",
+                "created_at": "2024-12-20T15:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-31",
+        "institution_id": "INST_EIIN_001",
+        "title": "Environmental Seminar",
+        "description": "A seminar on sustainability taught students about reducing their carbon footprint. Experts discussed renewable energy, waste management, and eco-friendly practices. Interactive workshops allowed students to design sustainable projects, such as composting systems. The event included a panel discussion with local environmentalists. Over 80 students attended, gaining practical knowledge. Resources were shared for continued learning. The school committed to implementing green initiatives based on the seminar’s outcomes.",
+        "created_at": "2024-09-15T11:00:00Z",
+        "updated_at": "2025-02-20T13:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-38",
+                "post_id": "uuid-31",
+                "image_link": "https://picsum.photos/1000?random=789",
+                "created_at": "2024-09-15T11:00:00Z"
+            },
+            {
+                "id": "img-uuid-39",
+                "post_id": "uuid-31",
+                "image_link": "https://picsum.photos/1000?random=123",
+                "created_at": "2024-09-15T11:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-32",
+        "institution_id": "INST_EIIN_001",
+        "title": "Dance Workshop",
+        "description": "A dance workshop taught contemporary and traditional styles. A professional dancer led the sessions. Students enjoyed the creative experience.",
+        "created_at": "2024-08-10T14:00:00Z",
+        "updated_at": "2025-01-10T10:00:00Z",
+        "images": []
+    },
+    {
+        "id": "uuid-33",
+        "institution_id": "INST_EIIN_001",
+        "title": "Alumni Meet",
+        "description": "Alumni shared career advice and experiences with students. The event fostered networking and inspiration. A panel discussion covered diverse professions. Refreshments were served.",
+        "created_at": "2024-11-30T16:00:00Z",
+        "updated_at": "2025-05-06T11:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-40",
+                "post_id": "uuid-33",
+                "image_link": "https://picsum.photos/1000?random=234",
+                "created_at": "2024-11-30T16:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-34",
+        "institution_id": "INST_EIIN_001",
+        "title": "Writing Contest",
+        "description": "Students submitted stories and essays for a creative writing contest. Winners were published in the school magazine. Judges praised the originality and depth of entries. A reading event showcased the best works. Over 50 students participated, gaining confidence in their writing. The contest encouraged literary exploration and self-expression. Plans for a poetry contest are in progress.",
+        "created_at": "2024-10-25T10:00:00Z",
+        "updated_at": "2025-04-01T12:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-41",
+                "post_id": "uuid-34",
+                "image_link": "https://picsum.photos/1000?random=567",
+                "created_at": "2024-10-25T10:00:00Z"
+            },
+            {
+                "id": "img-uuid-42",
+                "post_id": "uuid-34",
+                "image_link": "https://picsum.photos/1000?random=890",
+                "created_at": "2024-10-25T10:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "uuid-35",
+        "institution_id": "INST_EIIN_001",
+        "title": "Graduation 2024",
+        "description": "The class of 2024 celebrated their graduation with a memorable ceremony. Speeches from students and faculty highlighted achievements and future aspirations. Awards were given for academic and extracurricular excellence. The event included a musical performance and a slideshow of memories. Over 200 guests, including families, attended the outdoor ceremony. Graduates tossed their caps in celebration, marking the end of their school journey. A reception followed with food and dancing.",
+        "created_at": "2024-06-30T11:00:00Z",
+        "updated_at": "2025-01-05T13:00:00Z",
+        "images": [
+            {
+                "id": "img-uuid-43",
+                "post_id": "uuid-35",
+                "image_link": "https://picsum.photos/1000?random=321",
+                "created_at": "2024-06-30T11:00:00Z"
+            },
+            {
+                "id": "img-uuid-44",
+                "post_id": "uuid-35",
+                "image_link": "https://picsum.photos/1000?random=654",
+                "created_at": "2024-06-30T11:00:00Z"
+            },
+            {
+                "id": "img-uuid-45",
+                "post_id": "uuid-35",
+                "image_link": "https://picsum.photos/1000?random=987",
+                "created_at": "2024-06-30T11:00:00Z"
+            }
+        ]
+    }
+]

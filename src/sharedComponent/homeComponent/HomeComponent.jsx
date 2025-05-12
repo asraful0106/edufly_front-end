@@ -1,16 +1,27 @@
 import React, { useContext } from 'react';
 import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { MdOutlinePostAdd } from "react-icons/md";
+import PostContext from '../../contextapi/post/PostContext';
+import PostCard from './PostCard';
 
 const HomeComponent = () => {
     const { data } = useContext(EiiContext);
     const foundingDate = new Date(data?.founding_date);
+
+    // data from Post Context
+    const { postLoading, postError, postData, fetchPostData } = useContext(PostContext);
+    if(!postData){
+        fetchPostData('/public/fakeData/post.json');
+    }
+
     return (
         <div>
             {/* Institution Cover Image */}
             <div className='w-full h-[500px]'>
                 <img className='w-full h-[500px] object-cover' src="/public/cover_image.jpg" alt="" />
             </div>
+
+
             <div className='p-4'>
                 {/* Institution Name */}
                 <div className='flex items-center justify-between'>
@@ -36,6 +47,23 @@ const HomeComponent = () => {
                     </div>
                 </div>
             </div>
+
+
+            {/* Post part */}
+            <div className='w-full flex justify-center items-center'>
+                <div className="p-4 grid gap-6 mt-20 max-w-[80%]">
+                    {postLoading && <p>Loading posts...</p>}
+                    {postError && <p className="text-red-600">Error loading posts.</p>}
+                    {!postLoading && !postError && postData?.length === 0 && (
+                        <p>No posts available.</p>
+                    )}
+                    {!postLoading && !postError && postData?.length > 0 && postData.map(post => (
+                        <PostCard key={post.id} post={post} />
+                    ))}
+                </div>
+            </div>
+
+
         </div>
     );
 };

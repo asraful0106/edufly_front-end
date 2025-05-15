@@ -3,6 +3,7 @@ import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { MdOutlinePostAdd } from "react-icons/md";
 import PostContext from '../../contextapi/post/PostContext';
 import PostCard from './PostCard';
+import PostModalContext from '../../contextapi/postModal/PostModalContext';
 
 const HomeComponent = () => {
     const { data } = useContext(EiiContext);
@@ -13,6 +14,9 @@ const HomeComponent = () => {
     if(!postData){
         fetchPostData('/public/fakeData/post.json');
     }
+
+    // State for Post Modal
+    const { postModal, setPostModal } = useContext(PostModalContext);
 
     return (
         <div>
@@ -40,18 +44,21 @@ const HomeComponent = () => {
                     </div>
                     {/* Button For new post */}
                     <div>
-                        <button className="btn bg-[#1A77F2] text-white border-[#005fd8]">
+                        <button onClick={() => {setPostModal(true)
+                            console.log("Modal: ", postModal);
+                        }} className="btn bg-[#1A77F2] text-white border-[#005fd8]">
                             <MdOutlinePostAdd />
                             Create New Post
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>  
+
 
 
             {/* Post part */}
             <div className='w-full flex justify-center items-center'>
-                <div className="p-4 grid gap-6 mt-20 max-w-[80%]">
+                <div className="p-4 grid gap-6 mt-20 max-w-[70%]">
                     {postLoading && <p>Loading posts...</p>}
                     {postError && <p className="text-red-600">Error loading posts.</p>}
                     {!postLoading && !postError && postData?.length === 0 && (

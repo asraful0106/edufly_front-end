@@ -230,22 +230,20 @@
         ]
     },
     {
-        "teacher": {
-            "id": "550e8400-e29b-41d4-a716-446655440007",
-            "institution_id": "123456",
-            "name_eng": "Kamal Hossain",
-            "name_bng": "কামাল হোসেন",
-            "teacher_id": "T007",
-            "teacher_initial": "KH",
-            "about": "Expert in historical analysis and education.",
-            "image": "https://img.freepik.com/premium-photo/indian-business-man-black-suit-white-background_862994-279318.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
-            "email": "kamal.hossain@school.com",
-            "phone_number": "01778901234",
-            "position": "History Teacher",
-            "role": "teacher",
-            "created_at": "2023-07-15T12:00:00Z",
-            "updated_at": "2024-11-05T09:15:00Z"
-        },
+        "id": "550e8400-e29b-41d4-a716-446655440007",
+        "institution_id": "123456",
+        "name_eng": "Kamal Hossain",
+        "name_bng": "কামাল হোসেন",
+        "teacher_id": "T007",
+        "teacher_initial": "KH",
+        "about": "Expert in historical analysis and education.",
+        "image": "https://img.freepik.com/premium-photo/indian-business-man-black-suit-white-background_862994-279318.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "kamal.hossain@school.com",
+        "phone_number": "01778901234",
+        "position": "History Teacher",
+        "role": "teacher",
+        "created_at": "2023-07-15T12:00:00Z",
+        "updated_at": "2024-11-05T09:15:00Z",
         "degrees": [
             {
                 "id": "a1b2c3d4-e5f6-7890-abcd-123456789010",

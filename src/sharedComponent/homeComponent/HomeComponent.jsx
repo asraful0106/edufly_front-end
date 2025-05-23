@@ -4,15 +4,21 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import PostContext from '../../contextapi/post/PostContext';
 import PostCard from './PostCard';
 import PostModalContext from '../../contextapi/postModal/PostModalContext';
+import { useLocation } from 'react-router';
 
 const HomeComponent = () => {
+    const currentLocation = useLocation();
     const { data } = useContext(EiiContext);
     const foundingDate = new Date(data?.founding_date);
 
     // data from Post Context
     const { postLoading, postError, postData, fetchPostData } = useContext(PostContext);
-    if(!postData){
-        fetchPostData('/public/fakeData/post.json');
+    if (!postData) {
+        // fetchPostData('/public/fakeData/post.json');
+        const regex = /(?<=^\/)(\d+)(?=\/|$)/;
+        const eiinValue = currentLocation.pathname?.match(regex)[0];
+        fetchPostData(`${import.meta.env.VITE_BACKEND_LINK}/post/${eiinValue}`);
+        console.log("Post Data: ", postData);
     }
 
     // State for Post Modal
@@ -44,7 +50,8 @@ const HomeComponent = () => {
                     </div>
                     {/* Button For new post */}
                     <div>
-                        <button onClick={() => {setPostModal(true)
+                        <button onClick={() => {
+                            setPostModal(true)
                             console.log("Modal: ", postModal);
                         }} className="btn bg-[#1A77F2] text-white border-[#005fd8]">
                             <MdOutlinePostAdd />
@@ -52,7 +59,7 @@ const HomeComponent = () => {
                         </button>
                     </div>
                 </div>
-            </div>  
+            </div>
 
 
 

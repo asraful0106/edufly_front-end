@@ -1,0 +1,531 @@
+[
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440001",
+        "institution_id": "123456",
+        "name_eng": "John Smith",
+        "name_bng": "জন স্মিথ",
+        "teacher_id": "T001",
+        "teacher_initial": "JS",
+        "about": "Experienced educator with a passion for mathematics.",
+        "image": "https://img.freepik.com/premium-photo/happy-elegant-business-man-standing-isolated-white-background_1090394-24960.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "john.smith@school.com",
+        "phone_number": "01712345678",
+        "position": "Head Teacher",
+        "role": "teacher",
+        "created_at": "2023-01-15T10:00:00Z",
+        "updated_at": "2024-05-20T12:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789001",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440001",
+                "title": "M.Sc. in Mathematics",
+                "passing_year": "2010-06-15T00:00:00Z"
+            },
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789002",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440001",
+                "title": "B.Sc. in Mathematics",
+                "passing_year": "2008-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789001",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440001",
+                "title": "Best Math Teacher Award",
+                "description": "Received for outstanding performance in teaching mathematics.",
+                "year": "2022-12-10T00:00:00Z"
+            },
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789002",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440001",
+                "title": "Math Olympiad Coach",
+                "description": "Coached students to success in national math olympiads.",
+                "year": "2023-07-20T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440002",
+        "institution_id": "123456",
+        "name_eng": "Mary Johnson",
+        "name_bng": "মেরি জনসন",
+        "teacher_id": "T002",
+        "teacher_initial": "MJ",
+        "about": "Dedicated to improving student literacy.",
+        "image": "https://img.freepik.com/free-photo/picture-elegant-young-fashion-man_158595-520.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "mary.johnson@school.com",
+        "phone_number": "01723456789",
+        "position": "Assistant English Teacher",
+        "role": "teacher",
+        "created_at": "2023-02-10T09:30:00Z",
+        "updated_at": "2024-06-15T14:20:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789003",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440002",
+                "title": "M.A. in English",
+                "passing_year": "2012-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789003",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440002",
+                "title": "Literacy Program Leader",
+                "description": "Led a school-wide literacy improvement initiative.",
+                "year": "2023-06-15T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440003",
+        "institution_id": "123456",
+        "name_eng": "Abdul Rahman",
+        "name_bng": "আব্দুল রহমান",
+        "teacher_id": "T003",
+        "teacher_initial": "AR",
+        "about": "Specializes in science education and experiments.",
+        "image": "https://img.freepik.com/free-photo/front-view-happy-lawyer-with-smartphone_23-2148230858.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "abdul.rahman@school.com",
+        "phone_number": "01734567890",
+        "position": "Science Teacher",
+        "role": "teacher",
+        "created_at": "2023-03-05T11:15:00Z",
+        "updated_at": "2024-07-10T10:45:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789004",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440003",
+                "title": "B.Sc. in Chemistry",
+                "passing_year": "2009-06-15T00:00:00Z"
+            },
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789005",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440003",
+                "title": "M.Sc. in Chemistry",
+                "passing_year": "2011-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789004",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440003",
+                "title": "Science Fair Coordinator",
+                "description": "Organized a regional science fair with student projects.",
+                "year": "2021-11-20T00:00:00Z"
+            },
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789005",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440003",
+                "title": "Innovative Teaching Award",
+                "description": "Recognized for innovative science teaching methods.",
+                "year": "2023-03-10T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440004",
+        "institution_id": "123456",
+        "name_eng": "Sarah Brown",
+        "name_bng": "সারাহ ব্রাউন",
+        "teacher_id": "T004",
+        "teacher_initial": "SB",
+        "about": "Fosters critical thinking in language arts.",
+        "image": "https://img.freepik.com/free-photo/proud-young-executive-ready-start_1139-303.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "sarah.brown@school.com",
+        "phone_number": "01745678901",
+        "position": "Head of English",
+        "role": "teacher",
+        "created_at": "2023-04-20T08:00:00Z",
+        "updated_at": "2024-08-05T09:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789006",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440004",
+                "title": "M.A. in English Literature",
+                "passing_year": "2010-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789006",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440004",
+                "title": "English Curriculum Developer",
+                "description": "Developed a new English curriculum for the school.",
+                "year": "2022-05-15T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440005",
+        "institution_id": "123456",
+        "name_eng": "Mohammad Ali",
+        "name_bng": "মোহাম্মদ আলী",
+        "teacher_id": "T005",
+        "teacher_initial": "MA",
+        "about": "Expert in physics and practical applications.",
+        "image": "https://img.freepik.com/premium-photo/smart-real-man-suit-white-background_564692-35017.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "mohammad.ali@school.com",
+        "phone_number": "01756789012",
+        "position": "Physics Teacher",
+        "role": "teacher",
+        "created_at": "2023-05-12T13:20:00Z",
+        "updated_at": "2024-09-01T11:30:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789007",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440005",
+                "title": "M.Sc. in Physics",
+                "passing_year": "2013-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789007",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440005",
+                "title": "Physics Workshop Leader",
+                "description": "Conducted workshops on practical physics applications.",
+                "year": "2023-08-20T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440006",
+        "institution_id": "123456",
+        "name_eng": "Emily Davis",
+        "name_bng": "এমিলি ডেভিস",
+        "teacher_id": "T006",
+        "teacher_initial": "ED",
+        "about": "Passionate about literature and creative writing.",
+        "image": "https://img.freepik.com/free-photo/close-up-young-businessman-holding-disposable-coffee-cup-hand-looking-camera_23-2148176166.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "emily.davis@school.com",
+        "phone_number": "01767890123",
+        "position": "Literature Teacher",
+        "role": "teacher",
+        "created_at": "2023-06-01T10:10:00Z",
+        "updated_at": "2024-10-10T15:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789008",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440006",
+                "title": "B.A. in Literature",
+                "passing_year": "2007-06-15T00:00:00Z"
+            },
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789009",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440006",
+                "title": "M.A. in Creative Writing",
+                "passing_year": "2009-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789008",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440006",
+                "title": "Creative Writing Mentor",
+                "description": "Mentored students in national writing competitions.",
+                "year": "2022-10-10T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "teacher": {
+            "id": "550e8400-e29b-41d4-a716-446655440007",
+            "institution_id": "123456",
+            "name_eng": "Kamal Hossain",
+            "name_bng": "কামাল হোসেন",
+            "teacher_id": "T007",
+            "teacher_initial": "KH",
+            "about": "Expert in historical analysis and education.",
+            "image": "https://img.freepik.com/premium-photo/indian-business-man-black-suit-white-background_862994-279318.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+            "email": "kamal.hossain@school.com",
+            "phone_number": "01778901234",
+            "position": "History Teacher",
+            "role": "teacher",
+            "created_at": "2023-07-15T12:00:00Z",
+            "updated_at": "2024-11-05T09:15:00Z"
+        },
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789010",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440007",
+                "title": "M.A. in History",
+                "passing_year": "2011-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789009",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440007",
+                "title": "History Education Award",
+                "description": "Awarded for excellence in history education.",
+                "year": "2023-04-15T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440008",
+        "institution_id": "123456",
+        "name_eng": "Lisa Wilson",
+        "name_bng": "লিসা উইলসন",
+        "teacher_id": "T008",
+        "teacher_initial": "LW",
+        "about": "Focuses on innovative math teaching methods.",
+        "image": "https://img.freepik.com/premium-photo/happy-elegant-business-man-standing-isolated-white-background_1090394-24991.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "lisa.wilson@school.com",
+        "phone_number": "01789012345",
+        "position": "Math Teacher",
+        "role": "teacher",
+        "created_at": "2023-08-20T14:30:00Z",
+        "updated_at": "2024-12-01T10:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789011",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440008",
+                "title": "B.Sc. in Mathematics",
+                "passing_year": "2010-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789010",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440008",
+                "title": "Math Olympiad Coach",
+                "description": "Coached students to success in national math olympiads.",
+                "year": "2022-07-20T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440009",
+        "institution_id": "123456",
+        "name_eng": "Rahima Begum",
+        "name_bng": "রহিমা বেগম",
+        "teacher_id": "T009",
+        "teacher_initial": "RB",
+        "about": "Advocates for inclusive education practices.",
+        "image": "https://img.freepik.com/premium-photo/happy-elegant-business-man-standing-isolated-white-background_1090394-24964.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "rahima.begum@school.com",
+        "phone_number": "01790123456",
+        "position": "Special Education Teacher",
+        "role": "teacher",
+        "created_at": "2023-09-10T11:45:00Z",
+        "updated_at": "2024-12-15T12:30:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789012",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440009",
+                "title": "M.Ed. in Special Education",
+                "passing_year": "2012-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789011",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440009",
+                "title": "Inclusive Education Advocate",
+                "description": "Recognized for promoting inclusive education practices.",
+                "year": "2023-09-10T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440010",
+        "institution_id": "123456",
+        "name_eng": "David Lee",
+        "name_bng": "ডেভিড লি",
+        "teacher_id": "T010",
+        "teacher_initial": "DL",
+        "about": "Promotes physical fitness and teamwork.",
+        "image": "https://img.freepik.com/free-photo/portrait-professional-elegant-businessman_23-2150917140.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "david.lee@school.com",
+        "phone_number": "01701234567",
+        "position": "Physical Education Teacher",
+        "role": "teacher",
+        "created_at": "2023-10-05T09:00:00Z",
+        "updated_at": "2025-01-10T14:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789013",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440010",
+                "title": "B.A. in Physical Education",
+                "passing_year": "2008-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789012",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440010",
+                "title": "Sports Program Leader",
+                "description": "Led school sports teams to regional championships.",
+                "year": "2022-11-15T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440011",
+        "institution_id": "123456",
+        "name_eng": "Fatima Akter",
+        "name_bng": "ফাতিমা আক্তার",
+        "teacher_id": "T011",
+        "teacher_initial": "FA",
+        "about": "Specializes in biology and environmental science.",
+        "image": "https://img.freepik.com/premium-photo/man-suit-with-pocket-that-says-he-is-wearing-blue-tie_860932-22097.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "fatima.akter@school.com",
+        "phone_number": "01712345679",
+        "position": "Biology Teacher",
+        "role": "teacher",
+        "created_at": "2023-11-01T10:30:00Z",
+        "updated_at": "2025-02-05T11:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789014",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440011",
+                "title": "M.Sc. in Biology",
+                "passing_year": "2013-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789013",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440011",
+                "title": "Environmental Science Award",
+                "description": "Received for contributions to environmental education.",
+                "year": "2023-05-20T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440012",
+        "institution_id": "123456",
+        "name_eng": "James Carter",
+        "name_bng": "জেমস কার্টার",
+        "teacher_id": "T012",
+        "teacher_initial": "JC",
+        "about": "Promotes STEM education and innovation.",
+        "image": "https://img.freepik.com/premium-photo/portrait-confident-businessman-suit-with-arms-crossed_951300-505.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "james.carter@school.com",
+        "phone_number": "01723456780",
+        "position": "Chemistry Teacher",
+        "role": "teacher",
+        "created_at": "2023-12-10T12:15:00Z",
+        "updated_at": "2025-03-01T09:45:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789015",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440012",
+                "title": "B.Sc. in Chemistry",
+                "passing_year": "2010-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789014",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440012",
+                "title": "STEM Project Mentor",
+                "description": "Mentored students in STEM project competitions.",
+                "year": "2023-02-10T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440013",
+        "institution_id": "123456",
+        "name_eng": "Nusrat Jahan",
+        "name_bng": "নুসরাত জাহান",
+        "teacher_id": "T013",
+        "teacher_initial": "NJ",
+        "about": "Advocates for student mental health and counseling.",
+        "image": "https://img.freepik.com/premium-photo/classic-style-man-about-town-business-men-formal-dress_1022220-1727.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "nusrat.jahan@school.com",
+        "phone_number": "01734567891",
+        "position": "School Counselor",
+        "role": "teacher",
+        "created_at": "2024-01-15T13:00:00Z",
+        "updated_at": "2025-04-10T10:20:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789016",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440013",
+                "title": "M.A. in Counseling",
+                "passing_year": "2014-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789015",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440013",
+                "title": "Counseling Program Developer",
+                "description": "Developed a school-wide mental health program.",
+                "year": "2023-07-15T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440014",
+        "institution_id": "123456",
+        "name_eng": "Anna Taylor",
+        "name_bng": "আন্না টেলর",
+        "teacher_id": "T014",
+        "teacher_initial": "AT",
+        "about": "Encourages creativity through art education.",
+        "image": "https://img.freepik.com/premium-photo/portrait-young-business-man-suit-pointing-aside-copy-space-white-wall_396254-155.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "anna.taylor@school.com",
+        "phone_number": "01745678902",
+        "position": "Art Teacher",
+        "role": "teacher",
+        "created_at": "2024-02-20T11:30:00Z",
+        "updated_at": "2025-05-01T12:00:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789017",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440014",
+                "title": "B.F.A. in Fine Arts",
+                "passing_year": "2009-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789016",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440014",
+                "title": "Art Exhibition Organizer",
+                "description": "Organized a student art exhibition.",
+                "year": "2023-06-10T00:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": "550e8400-e29b-41d4-a716-446655440015",
+        "institution_id": "123456",
+        "name_eng": "Hasan Mahmud",
+        "name_bng": "হাসান মাহমুদ",
+        "teacher_id": "T015",
+        "teacher_initial": "HM",
+        "about": "Focuses on innovative teaching strategies.",
+        "image": "https://img.freepik.com/premium-photo/man-suit-with-white-shirt-that-says-hes-man_860932-33490.jpg?ga=GA1.1.1509803950.1721046421&semt=ais_hybrid&w=740",
+        "email": "hasan.mahmud@school.com",
+        "phone_number": "01756789013",
+        "position": "Geography Teacher",
+        "role": "teacher",
+        "created_at": "2024-03-10T10:00:00Z",
+        "updated_at": "2025-05-15T09:30:00Z",
+        "degrees": [
+            {
+                "id": "a1b2c3d4-e5f6-7890-abcd-123456789018",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440015",
+                "title": "M.A. in Geography",
+                "passing_year": "2012-06-15T00:00:00Z"
+            }
+        ],
+        "achievements": [
+            {
+                "id": "b1c2d3e4-f5g6-7890-abcd-123456789017",
+                "teacher_id": "550e8400-e29b-41d4-a716-446655440015",
+                "title": "Geography Teaching Award",
+                "description": "Awarded for excellence in geography education.",
+                "year": "2023-08-15T00:00:00Z"
+            }
+        ]
+    }
+]

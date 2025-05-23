@@ -5,7 +5,7 @@ import "./SearchPage.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Lottie from 'lottie-react';
-import loadingLottie from '../../../public/lottie/loading.json'
+import loadingLottie from '../../lottie/loading.json'
 import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router';

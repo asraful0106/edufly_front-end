@@ -12,6 +12,7 @@ import ContactUsComponent from '../sharedComponent/contactUs/ContactUsComponent'
 import DashboardComponent from '../sharedComponent/dashboard/DashboardComponent';
 import GalleryCompnent from '../sharedComponent/gallery/GalleryCompnent';
 import DashboardComponentChild from '../sharedComponent/dashboardComponent/DashboardComponentChild';
+import DashTeacherComponent from '../sharedComponent/dashTeacher/DashTeacherComponent';
 
 const AppRoutes = () => {
     return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
                         <Route path='/:id/gallery' element={<GalleryCompnent />} />
                         <Route path='/:id/dashboard' element={<DashboardComponent />}>
                             <Route path='/:id/dashboard' element={<DashboardComponentChild/>}/>
+                            <Route path='/:id/dashboard/teacher' element={<DashTeacherComponent/>}/>
                         </Route>
                     </Route>
                 </Route>

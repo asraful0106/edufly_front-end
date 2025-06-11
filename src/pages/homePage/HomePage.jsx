@@ -354,7 +354,7 @@ const HomePage = () => {
             <Navigation location="/home" />
 
             {/* Page Content */}
-            <main className='flex-grow'>
+            <main className='flex-grow max-w-screen'>
                 <Outlet />
             </main>
 

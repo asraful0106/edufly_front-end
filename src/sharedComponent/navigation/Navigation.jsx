@@ -57,7 +57,8 @@ const Navigation = ({ name, location }) => {
                             <li><NavLink to={`/${data?.eiin}/notice`} className={currentLocation.pathname === `/${data?.eiin}/notice` ? 'activeNav' : ''}>Notice</NavLink></li>
                             <li><NavLink to={`/${data?.eiin}/contact-us`} className={currentLocation.pathname === `/${data?.eiin}/contact-us` ? 'activeNav' : ''}>Contact Us</NavLink></li>
                             <li><NavLink to={`/${data?.eiin}/gallery`} className={currentLocation.pathname === `/${data?.eiin}/gallery` ? 'activeNav' : ''}>Gallery</NavLink></li>
-                            <li><NavLink to={`/${data?.eiin}/dashboard`} className={currentLocation.pathname === `/${data?.eiin}/dashboard` ? 'activeNav' : ''}>Dashbord</NavLink></li>
+                            {/* <li><NavLink to={`/${data?.eiin}/dashboard`} className={currentLocation.pathname === `/${data?.eiin}/dashboard` ? 'activeNav' : ''}>Dashbord</NavLink></li> */}
+                                <li><NavLink to={`/${data?.eiin}/dashboard`} className={currentLocation.pathname.toString().includes('dashboard') ? 'activeNav' : ''}>Dashbord</NavLink></li>
                         </ul>
                     }
                 </div>

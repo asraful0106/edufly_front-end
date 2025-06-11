@@ -9,15 +9,15 @@ const DashboardComponent = () => {
     const currentLocation = useLocation();
     return (
         <div>
-            <div className="container min-w-full max-h-screen">
-                <div className="main-container max-h-screen">
+            <div className="container max-w-screen h-full">
+                <div className="main-container h-full">
                     <Outlet />
                 </div>
                 {/* Side Bar */}
-                <div className="side-navigation max-h-screen">
+                <div className="side-navigation h-full">
                     <aside
                         id="default-sidebar"
-                        className="h-screen transition-transform -translate-x-full sm:translate-x-0"
+                        className="h-full transition-transform -translate-x-full sm:translate-x-0"
                         aria-label="Sidebar"
                     >
                         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-800">

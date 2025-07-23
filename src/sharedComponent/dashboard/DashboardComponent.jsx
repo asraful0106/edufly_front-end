@@ -10,7 +10,7 @@ const DashboardComponent = () => {
     return (
         <div>
             <div className="container max-w-screen h-full">
-                <div className="main-container h-full">
+                <div className="main-container min-h-screen">
                     <Outlet />
                 </div>
                 {/* Side Bar */}

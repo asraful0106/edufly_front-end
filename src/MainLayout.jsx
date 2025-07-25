@@ -11,7 +11,7 @@ const MainLayout = () => {
     return (
         // Context to handle full Teacher Data for dash board
         <FullTeacherInfoContextProvider>
-             // Context to handle Basci Teacher Data
+             {/* Context to handle Basci Teacher Data */}
             <BasicTeacherInfoContextProvider>
                 {/* Context to handle PostModal */}
                 <PostModalContextProvider>

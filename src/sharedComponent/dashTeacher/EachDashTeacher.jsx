@@ -1,62 +1,37 @@
-import axios from 'axios';
-import React, { useState, useRef, useContext } from 'react';
-import { IoCreateOutline } from "react-icons/io5";
-import { LuUpload } from "react-icons/lu";
-import { useLocation } from 'react-router';
-import { toast } from 'react-toastify';
-import { FaCircleCheck } from "react-icons/fa6";
-import { MdCancel } from "react-icons/md";
-import _ from 'lodash'; // For debouncing
-import loadingLottie from '../../lottie/loading.json'
+import { useRef, useState } from 'react';
+import { MdDelete, MdCancel } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { IoIosEye } from "react-icons/io";
+import Modal from 'react-modal';
+import loadingLottie from '../../lottie/loading.json';
 import Lottie from 'lottie-react';
-import FullTeacherInfoCotext from '../../contextapi/fullTeacherInfo/fullTeacherInfoContext';
-import EachDashTeacher from './EachDashTeacher';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import _ from 'lodash'; // For debouncing
+import { LuUpload } from "react-icons/lu";
+import Swal from 'sweetalert2';
 
-
-const DashTeacherComponent = () => {
-    const currentLocation = useLocation();
-    const [searchType, setSearchType] = useState("ID");
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
-    const [isCreating, setIsCreating] = useState(false);
-    const inputRef = useRef(null);
-
-    const regex = /(?<=^\/)(\d+)(?=\/|$)/;
-    const eiinValue = currentLocation.pathname?.match(regex)[0];
-    // console.log("Eiin: ", eiinValue);
-
-    // Form fileds to create new teacher
+const EachDashTeacher = ({ teacherData, featchFullTeacherData }) => {
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const modifiedTeacherData = {
+        ...teacherData,
+        date_of_birth: new Date(teacherData?.date_of_birth).toISOString().split('T')[0]
+    }
     // State for form fields
-    const [formData, setFormData] = useState({
-        name_eng: '',
-        name_bng: '',
-        teacher_id: '',
-        teacher_initial: '',
-        email: '',
-        phone_number: '',
-        date_of_birth: '',
-        religion: 'islam',
-        gender: 'male',
-        present_adress: '',
-        parmanent_adress: '',
-        position: '',
-        blood_group: 'A+',
-        role: 'teacher'
-    });
-
+    const [formData, setFormData] = useState(modifiedTeacherData);
     // teacher image upload ref
-    const inputProfileImageRef = useRef(null);
-    const inputSignautreImageRef = useRef(null);
+    const inputProfileImageRefForUpdate = useRef(null);
+    const inputSignautreImageRefUpdate = useRef(null);
     // State for file inputs
     const [image, setImage] = useState(null);
     const [signature, setSignature] = useState(null);
-    const [previewProfileImage, setPreviewProfileImage] = useState(null);
-    const [previewSignatureImage, setPreviewSignatureImage] = useState(null);
+    const [previewProfileImage, setPreviewProfileImage] = useState(teacherData?.image ? `${import.meta.env.VITE_BACKEND_LINK}/image/teacher/${teacherData?.image}` : null);
+    const [previewSignatureImage, setPreviewSignatureImage] = useState(teacherData?.signature ? `${import.meta.env.VITE_BACKEND_LINK}/image/teacher-signeture/${teacherData?.signature}` : null);
 
     // state to handle the teacher creation
-    const [createTeacherLoading, setCreateTeacherLoading] = useState(false);
-    const [createTeacherSuccess, setCreateTeacherSuccess] = useState(false);
-    const [createTeacherError, setCreateTeacherError] = useState("");
+    const [updateTeacherLoading, setUpdateTeacherLoading] = useState(false);
+    const [updateTeacherSuccess, setUpdateTeacherSuccess] = useState(false);
+    const [updateTeacherError, setUpdateTeacherError] = useState("");
 
     // For Checking if the Teacher Id and Teacher initial is available
     const [teacherIdAvailabilityToggled, setTeacherIdAvailabilityToggled] = useState(false);
@@ -111,28 +86,28 @@ const DashTeacherComponent = () => {
         // For checking if the teacher id is available
         if (name === "teacher_id") {
             // console.log("teacher id: ",value);
-            checkTeacherIdAvailability(value, eiinValue);
+            checkTeacherIdAvailability(value, teacherData?.institution_id);
         }
         // For checking if the teacher initial is available
         if (name === "teacher_initial") {
-            checkTeacherInitalAvailability(value, eiinValue);
+            checkTeacherInitalAvailability(value, teacherData?.institution_id);
         }
     };
 
 
     // Form handeling prfile image Upload logic
     const handleProfileImageUplod = () => {
-        const file = inputProfileImageRef.current?.files[0];
+        const file = inputProfileImageRefForUpdate.current?.files[0];
         console.log("Input file: ", file);
         if (file) {
             // Validate file type and size
             const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
             if (!validTypes.includes(file.type)) {
-                setCreateTeacherError('Only JPG, PNG, or GIF files are allowed');
+                setUpdateTeacherError('Only JPG, PNG, or GIF files are allowed');
                 return;
             }
             if (file.size > 5 * 1024 * 1024) {
-                setCreateTeacherError('File size must be less than 5MB');
+                setUpdateTeacherError('File size must be less than 5MB');
                 return;
             }
             setImage(file);
@@ -144,16 +119,16 @@ const DashTeacherComponent = () => {
 
     // Form handeling signature image upload logic
     const handleSignatureImageUplod = () => {
-        const file = inputSignautreImageRef.current?.files[0];
+        const file = inputSignautreImageRefUpdate.current?.files[0];
         if (file) {
             // Validate file type and size
             const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
             if (!validTypes.includes(file.type)) {
-                setCreateTeacherError('Only JPG, PNG, or GIF files are allowed');
+                setUpdateTeacherError('Only JPG, PNG, or GIF files are allowed');
                 return;
             }
             if (file.size > 5 * 1024 * 1024) {
-                setCreateTeacherError('File size must be less than 5MB');
+                setUpdateTeacherError('File size must be less than 5MB');
                 return;
             }
             setSignature(file);
@@ -167,8 +142,8 @@ const DashTeacherComponent = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setCreateTeacherError('');
-        setCreateTeacherLoading(true);
+        setUpdateTeacherError('');
+        setUpdateTeacherLoading(true);
 
         if (!teacherIdAvailable || !teacherInitialAvailable) {
             toast.error("Teacher ID and Initial must be uniqe!.", {
@@ -187,8 +162,8 @@ const DashTeacherComponent = () => {
 
         // Validate required fields
         if (!image) {
-            setCreateTeacherError('Teacher image is required');
-            console.log(createTeacherError);
+            setUpdateTeacherError('Teacher image is required');
+            console.log(updateTeacherError);
             return;
         }
 
@@ -202,13 +177,13 @@ const DashTeacherComponent = () => {
         if (signature) data.append('signature', signature);
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/teacher/${eiinValue}`, data, {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/teacher/${teacherData?.institution_id}`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
-            setCreateTeacherSuccess(true);
+            setUpdateTeacherSuccess(true);
             setFormData({
                 name_eng: '',
                 name_bng: '',
@@ -229,9 +204,9 @@ const DashTeacherComponent = () => {
             setPreviewProfileImage(null);
             setSignature(null);
             setPreviewSignatureImage(null);
-            setCreateTeacherError('');
-            setCreateTeacherLoading(false);
-            setCreateTeacherSuccess(false);
+            setUpdateTeacherError('');
+            setUpdateTeacherLoading(false);
+            setUpdateTeacherSuccess(false);
 
             setTeacherIdAvailabilityToggled(false);
             setTeacherIdAvailable(false);
@@ -250,7 +225,7 @@ const DashTeacherComponent = () => {
             });
         } catch (err) {
             console.error('Error Creating Teacher:', err);
-            setCreateTeacherLoading(false);
+            setUpdateTeacherLoading(false);
             toast.error("Some thing wrong! Unable to create teacher.", {
                 position: "top-right",
                 autoClose: 5000,
@@ -264,150 +239,116 @@ const DashTeacherComponent = () => {
         }
     };
 
+    // --------------Handle Delete---------------
+    const handleDeleteTeacher = async (institution_id, teacherId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios({
+                        method: "DELETE",
+                        url: `${import.meta.env.VITE_BACKEND_LINK}/teacher/delete/${teacherId}`,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        data: {
+                            institution_id
+                        }
+                    });
 
-    // __________
-
-    const handleDropdownToggle = (e) => {
-        e.preventDefault();
-        setDropdownOpen((prev) => !prev);
+                    if (response.data.success) {
+                        // Update teacher data
+                        featchFullTeacherData(`${import.meta.env.VITE_BACKEND_LINK}/teacher/${teacherData.institution_id}`);
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The teacher has been deleted.",
+                            icon: "success"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: response.data.message || "Unable to delete teacher.",
+                            icon: "error"
+                        });
+                    }
+                } catch (err) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: err.response?.data?.message || "Something went wrong.",
+                        icon: "error"
+                    });
+                }
+            }
+        });
     };
 
-    const handleDropdownSelect = (type) => {
-        setSearchType(type);
-        setDropdownOpen(false);
-        inputRef.current?.focus();
-    };
 
-    const handleSearchInput = (e) => {
-        setSearchValue(e.target.value);
-    };
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // Implement your search logic here
-        alert(`Searching by ${searchType}: ${searchValue}`);
-    };
-
-
-    // For handeling the Teacher creating togol logic
-    const handleCreate = () => {
-        setIsCreating(true);
-    }
-
-    // -----------
-    // For getting all teacher
-    const { fullTeacherData, featchFullTeacherData, fullTeacherLoading, fullTeacherError } = useContext(FullTeacherInfoCotext);
-
-    if (!fullTeacherData) {
-        featchFullTeacherData(`${import.meta.env.VITE_BACKEND_LINK}/teacher/${eiinValue}`)
-    }
-
-    // console.log("Full Teacher Data: ", fullTeacherData);
 
     return (
         <div>
-            <div className='flex items-center justify-center'>
-                <div>
-                    {/* Search and new teacher entry section */}
-                    {
-                        !isCreating &&
-                        <div className='w-full bg-gray-800 rounded-xl py-8 px-8 mt-10 mx-16 flex items-center justify-between'>
-                            {/* search box */}
-                            <form onSubmit={handleSearch}>
-                                <div className="w-full max-w-sm min-w-[200px] bg-white rounded">
-                                    <div className="relative mt-2">
-                                        <div className="absolute top-1 left-1 flex items-center z-20">
-                                            <button
-                                                id="dropdownButton"
-                                                type="button"
-                                                onClick={handleDropdownToggle}
-                                                className="rounded border border-transparent py-1 px-1.5 text-center flex items-center text-sm transition-all text-slate-600"
-                                            >
-                                                <span id="dropdownSpan" className="text-ellipsis overflow-hidden">
-                                                    {searchType}
-                                                </span>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    strokeWidth="1.5"
-                                                    stroke="currentColor"
-                                                    className="h-4 w-4 ml-1"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                                                    />
-                                                </svg>
-                                            </button>
-                                            <div className="h-6 border-l border-slate-200 ml-1" />
-                                            <div
-                                                id="dropdownMenu"
-                                                className={`min-w-[150px] absolute left-0 mt-10 bg-white border border-slate-200 rounded-md shadow-lg z-30 ${dropdownOpen ? "" : "hidden"}`}
-                                            >
-                                                <ul id="dropdownOptions">
-                                                    <li
-                                                        className="px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm cursor-pointer"
-                                                        onClick={() => handleDropdownSelect("ID")}
-                                                    >
-                                                        ID
-                                                    </li>
-                                                    <li
-                                                        className="px-4 py-2 text-slate-600 hover:bg-slate-50 text-sm cursor-pointer"
-                                                        onClick={() => handleDropdownSelect("Name")}
-                                                    >
-                                                        Name
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <input
-                                            ref={inputRef}
-                                            type="text"
-                                            value={searchValue}
-                                            onChange={handleSearchInput}
-                                            className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pr-12 pl-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                            placeholder={searchType === "ID" ? "Enter teacher ID..." : "Enter teacher name..."}
-                                        />
-                                        <button
-                                            className="absolute right-1 top-1 rounded bg-slate-800 p-1.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                            type="submit"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 16 16"
-                                                fill="currentColor"
-                                                className="w-4 h-4"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            {/* Create new Teacher button */}
-                            <div>
-                                <button
-                                    onClick={handleCreate}
-                                    className={`flex items-center mt-1 p-2 rounded-lg text-black group bg-white`}
-                                >
-                                    <IoCreateOutline className={`w-5 h-5 transition duration-75`} />
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Create</span>
-                                </button>
-                            </div>
+            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-[20rem]">
+                <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+                    <img src={`${import.meta.env.VITE_BACKEND_LINK}/image/teacher/${teacherData?.image}`} alt="teacher-image" />
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center mb-2">
+                        <h6 class="text-slate-800 text-[18px] font-semibold">
+                            {teacherData?.name_eng}
+                        </h6>
+
+                        <div class="flex items-center gap-0 5 ml-auto">
+
+                            <p class="text-slate-600 text-[12px] ml-1.5">{teacherData?.position}</p>
                         </div>
-                    }
+                    </div>
+
+                    <p class="text-slate-600 leading-normal font-light">
+                        {teacherData?.about}
+                    </p>
+                </div>
+
+                <div class="px-4 pb-4 pt-0 mt-2">
+                    <div className='w-full flex items-center justify-center gap-6'>
+                        {/* For Edit */}
+                        <button onClick={() => setIsOpen(true)} className='p-3 rounded-full bg-gray-300/95 hover:bg-blue-600 hover:text-white'>
+                            <FaEdit className='text-[18px]' />
+                        </button>
+                        {/* For Delete */}
+                        <button onClick={() => handleDeleteTeacher(teacherData.institution_id, teacherData.id)} className='p-3 rounded-full bg-gray-300/95 hover:bg-blue-600 hover:text-white'>
+                            <MdDelete className='text-[18px]' />
+                        </button>
+                        {/* For View */}
+                        <button className='p-3 rounded-full bg-gray-300/95 hover:bg-blue-600 hover:text-white'>
+                            <IoIosEye className='text-[18px]' />
+                        </button>
+                    </div>
                 </div>
             </div>
-            {/* From for creating new teacher */}
-            {isCreating &&
+            {/* --------Modal to update teacher information------------ */}
+            <Modal isOpen={modalIsOpen} className="z-40 relative bg-white p-10">
+                {/* Modal close button */}
+                <div className='relative left-[100rem] top-2'>
+                    <button onClick={() => setIsOpen(false)}>
+                        <MdCancel className='text-2xl' />
+                    </button>
+                </div>
+
+                {/* Data Loading */}
+                {/* {
+                    <div className=' w-full min-h-[40rem] flex items-center justify-center'>
+                        <Lottie className='w-64 h-64' animationData={loadingLottie} loop={true} />
+                    </div>
+                } */}
+
                 <div className='relative'>
-                    <div className='p-10 m-10 bg-white rounded-2xl shadow-2xl'>
+                    <div className=''>
                         <h6 className='font-bold mb-4'>Profile Photo</h6>
                         <form
                             onSubmit={handleSubmit}
@@ -429,11 +370,11 @@ const DashTeacherComponent = () => {
                                             accept="image/png, image/jpeg, image/jpg, image/gif, image/avif"
                                             className="hidden"
                                             onChange={handleProfileImageUplod}
-                                            ref={inputProfileImageRef}
+                                            ref={inputProfileImageRefForUpdate}
 
                                         />
                                         <button
-                                            onClick={() => inputProfileImageRef.current?.click()}
+                                            onClick={() => inputProfileImageRefForUpdate.current?.click()}
                                             className="mt-4 text-sm text-gray-500 py-2 px-4
                                                 rounded bg-gray-200/80 hover:bg-gray-300 cursor-pointer"
                                         >
@@ -626,7 +567,7 @@ const DashTeacherComponent = () => {
                                                 accept='image/png, image/jpeg, image/jpg, image/avif'
                                                 name='tSigneture'
                                                 onChange={handleSignatureImageUplod}
-                                                ref={inputSignautreImageRef}
+                                                ref={inputSignautreImageRefUpdate}
 
                                             />
                                             <div className='flex items-center gap-x-4'>
@@ -634,7 +575,7 @@ const DashTeacherComponent = () => {
                                                     <img className='w-full h-full object-cover' src={`${previewSignatureImage ? previewSignatureImage : ''}`} alt="" />
                                                 </div>
                                                 <button
-                                                    onClick={() => inputSignautreImageRef.current?.click()}
+                                                    onClick={() => inputSignautreImageRefUpdate.current?.click()}
                                                     className="text-sm text-gray-500 py-4 px-4
                                                 rounded bg-gray-200/80 hover:bg-gray-300 cursor-pointer"
                                                 >
@@ -702,60 +643,26 @@ const DashTeacherComponent = () => {
                                 <div className='w-full flex items-center justify-center mt-6'>
                                     <button
                                         type="submit"
-                                        className="bg-blue-600 text-white px-10 py-2 rounded hover:bg-blue-700 transition"
+                                        className="bg-blue-600 text-white px-10 py-2 rounded hover:bg-blue-700 transition mb-24"
                                     >
                                         Submit
                                     </button>
                                 </div>
                             </div>
-
                         </form>
-                    </div>
-                    {/* Creating from close button */}
-                    <div className='relative left-[83rem] bottom-[51rem]'>
-                        <button onClick={() => setIsCreating(false)}>
-                            <MdCancel className='text-2xl' />
-                        </button>
                     </div>
                     {/* Teacher Creting Loading */}
                     {
-                        createTeacherLoading &&
+                        updateTeacherLoading &&
                         <div className='absolute top-1/2 right-1/2 -translate-1/2'>
                             <Lottie animationData={loadingLottie} loop={true} />
                         </div>
                     }
                 </div>
-            }
-            {/* ------- Displaying Teacher List ------- */}
-            <div className='mt-10 px-4'>
-                {/* When there is no teacher */}
-                {
-                    fullTeacherData?.length == 0 && !fullTeacherError && !fullTeacherLoading &&
-                    <div className=' w-full min-h-[35rem] flex items-center justify-center'>
-                        <h1 className='text-2xl text-gray-400/95'>No teacher found!</h1>
-                    </div>
-                }
-                {/* When teacher is loading */}
-                {
-                    !fullTeacherError && fullTeacherLoading &&
-                    <div className=' w-full min-h-[35rem] flex items-center justify-center'>
-                        <Lottie animationData={loadingLottie} loop={true} />
-                    </div>
-                }
-                {/* When there is teacher */}
-                {
-                    fullTeacherData?.length > 0 && !fullTeacherError && !fullTeacherLoading &&
-                    <div className='grid grid-cols-4 gap-6'>
-                        {
-                            fullTeacherData?.map(teacherData => (
-                                <EachDashTeacher key={teacherData.id} teacherData={teacherData} featchFullTeacherData = {featchFullTeacherData} />
-                            ))
-                        }
-                    </div>
-                }
-            </div>
+
+            </Modal>
         </div>
     );
 };
 
-export default DashTeacherComponent;
+export default EachDashTeacher;

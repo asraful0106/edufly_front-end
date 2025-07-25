@@ -7,16 +7,12 @@ const FullTeacherInfoContextProvider = ({ children }) => {
     const [fullTeacherLoading, setFullTeacherLoading] = useState(false);
     const [fullTeacherError, setFullTeacherError] = useState(null);
 
-    const featchBasicTeacherData = useCallback(async (url) => {
+    const featchFullTeacherData = useCallback(async (url) => {
         setFullTeacherLoading(true);
         setFullTeacherError(null);
         try {
             const response = await axios.get(url);
-            if (response?.data?.message) {
-                setFullTeacherData(response.data.message);
-            } else {
-                setFullTeacherData(response?.data);
-            }
+            setFullTeacherData(response?.data?.data);
         } catch (err) {
             setFullTeacherError(err.response?.data?.message || "Error fetching data");
         } finally {
@@ -25,7 +21,7 @@ const FullTeacherInfoContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <FullTeacherInfoCotext.Provider value={{ fullTeacherData, setFullTeacherData, fullTeacherError, setFullTeacherError, fullTeacherLoading, setFullTeacherLoading, featchBasicTeacherData }}>
+        <FullTeacherInfoCotext.Provider value={{ fullTeacherData, setFullTeacherData, fullTeacherError, setFullTeacherError, fullTeacherLoading, setFullTeacherLoading, featchFullTeacherData }}>
             {children}
         </FullTeacherInfoCotext.Provider>
     );

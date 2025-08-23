@@ -1,29 +1,35 @@
+import React, { useState, useRef, useContext, useMemo, useEffect } from 'react';
 import axios from 'axios';
-import React, { useState, useRef, useContext } from 'react';
-import { IoCreateOutline } from "react-icons/io5";
-import { LuUpload } from "react-icons/lu";
+import _ from 'lodash';
 import { useLocation } from 'react-router';
 import { toast } from 'react-toastify';
+import { IoCreateOutline } from "react-icons/io5";
+import { LuUpload } from "react-icons/lu";
 import { FaCircleCheck } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
-import _ from 'lodash'; // For debouncing
-import loadingLottie from '../../lottie/loading.json';
 import Lottie from 'lottie-react';
-import FullStudentInfoContext from '../../contextapi/fullStudentInfo/fullStudentInfoContext';
+
+import loadingLottie from '../../lottie/loading.json';
 import EachDashStudent from './EachDashStudent';
+import FullStudentInfoContext from '../../contextapi/fullStudentEnfo/FullStudentInfoContext';
 
 const DashStudentComponent = () => {
     const currentLocation = useLocation();
+
+    // ---- Safe EIIN extraction (no lookbehind; never index into null) ----
+    const eiinValue = useMemo(() => {
+        // Matches "/12345" or "/12345/..." and returns the numeric capture
+        const m = currentLocation.pathname.match(/\/(\d+)(?:\/|$)/);
+        return m ? m[1] : null;
+    }, [currentLocation.pathname]);
+
     const [searchType, setSearchType] = useState("ID");
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [isCreating, setIsCreating] = useState(false);
     const inputRef = useRef(null);
 
-    const regex = /(?<=^\/)(\d+)(?=\/|$)/;
-    const eiinValue = currentLocation.pathname?.match(regex)[0];
-
-    // State for form fields
+    // ---- Form state ----
     const [formData, setFormData] = useState({
         name_eng: '',
         name_bng: '',
@@ -44,130 +50,168 @@ const DashStudentComponent = () => {
         role: 'student'
     });
 
-    // Student image upload ref
+    // ---- Image inputs ----
     const inputProfileImageRef = useRef(null);
     const inputSignatureImageRef = useRef(null);
-    // State for file inputs
     const [image, setImage] = useState(null);
     const [signature, setSignature] = useState(null);
     const [previewProfileImage, setPreviewProfileImage] = useState(null);
     const [previewSignatureImage, setPreviewSignatureImage] = useState(null);
 
-    // State to handle student creation
+    // ---- Create student UX state ----
     const [createStudentLoading, setCreateStudentLoading] = useState(false);
     const [createStudentSuccess, setCreateStudentSuccess] = useState(false);
     const [createStudentError, setCreateStudentError] = useState("");
 
-    // For checking if the student ID is available
+    // ---- Student ID availability ----
     const [studentIdAvailabilityToggled, setStudentIdAvailabilityToggled] = useState(false);
     const [studentIdAvailable, setStudentIdAvailable] = useState(false);
 
-    // Debounced function to check student ID availability
-    const checkStudentIdAvailability = _.debounce(async (studentId, eiin) => {
-        try {
-            setStudentIdAvailabilityToggled(true);
-            const response = await axios.get(
-                `${import.meta.env.VITE_BACKEND_LINK}/student/isAvailable?institution_id=${eiin}&student_id=${studentId}`
-            );
-            setStudentIdAvailable(!response.data.sid_exist); // true if ID is available
-        } catch (error) {
-            console.error('Error checking student ID:', error);
-            setStudentIdAvailable(false);
-        }
-    }, 500);
+    // ---- Context for fetching & listing ----
+    const { fullStudentData, featchFullStudentData, fullStudentLoading, fullStudentError } =
+        useContext(FullStudentInfoContext);
+        console.log(fullStudentError);
 
-    // Handle text input changes
+    // ---- Memoized debounced check; cancel on unmount ----
+    const debouncedCheckStudentId = useMemo(
+        () =>
+            _.debounce(async (studentId, eiin) => {
+                try {
+                    setStudentIdAvailabilityToggled(true);
+                    const { data } = await axios.get(
+                        `${import.meta.env.VITE_BACKEND_LINK}/student/isAvailable?institution_id=${eiin}&student_id=${studentId}`
+                    );
+                    setStudentIdAvailable(!data.sid_exist);
+                } catch (error) {
+                    console.error('Error checking student ID:', error);
+                    setStudentIdAvailable(false);
+                }
+            }, 500),
+        []
+    );
+
+    useEffect(() => {
+        return () => debouncedCheckStudentId.cancel();
+    }, [debouncedCheckStudentId]);
+
+    // ---- Fetch the student list when eiinValue becomes available ----
+    useEffect(() => {
+        if (eiinValue) {
+            featchFullStudentData(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`);
+            console.log(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [eiinValue]);
+
+    // ---- Handlers ----
+    const handleDropdownToggle = (e) => {
+        e.preventDefault();
+        setDropdownOpen((prev) => !prev);
+    };
+
+    const handleDropdownSelect = (type) => {
+        setSearchType(type);
+        setDropdownOpen(false);
+        inputRef.current?.focus();
+    };
+
+    const handleSearchInput = (e) => setSearchValue(e.target.value);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // plug your API search here if needed
+        alert(`Searching by ${searchType}: ${searchValue}`);
+    };
+
+    const handleCreate = () => setIsCreating(true);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData((prev) => ({ ...prev, [name]: value }));
+
         if (name === "student_id") {
-            checkStudentIdAvailability(value, eiinValue);
+            if (value && eiinValue) {
+                debouncedCheckStudentId(value, eiinValue);
+            } else {
+                setStudentIdAvailabilityToggled(false);
+                setStudentIdAvailable(false);
+            }
         }
     };
 
-    // Form handling profile image upload logic
     const handleProfileImageUpload = () => {
-        const file = inputProfileImageRef.current?.files[0];
-        if (file) {
-            // Validate file type and size
-            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
-            if (!validTypes.includes(file.type)) {
-                setCreateStudentError('Only JPG, PNG, GIF, or AVIF files are allowed');
-                return;
-            }
-            if (file.size > 5 * 1024 * 1024) {
-                setCreateStudentError('File size must be less than 5MB');
-                return;
-            }
-            setImage(file);
-            const reader = new FileReader();
-            reader.onloadend = () => setPreviewProfileImage(reader.result);
-            reader.readAsDataURL(file);
+        const file = inputProfileImageRef.current?.files?.[0];
+        if (!file) return;
+
+        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
+        if (!validTypes.includes(file.type)) {
+            setCreateStudentError('Only JPG, PNG, GIF, or AVIF files are allowed');
+            return;
         }
+        if (file.size > 5 * 1024 * 1024) {
+            setCreateStudentError('File size must be less than 5MB');
+            return;
+        }
+
+        setImage(file);
+        const reader = new FileReader();
+        reader.onloadend = () => setPreviewProfileImage(reader.result);
+        reader.readAsDataURL(file);
     };
 
-    // Form handling signature image upload logic
     const handleSignatureImageUpload = () => {
-        const file = inputSignatureImageRef.current?.files[0];
-        if (file) {
-            // Validate file type and size
-            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
-            if (!validTypes.includes(file.type)) {
-                setCreateStudentError('Only JPG, PNG, GIF, or AVIF files are allowed');
-                return;
-            }
-            if (file.size > 5 * 1024 * 1024) {
-                setCreateStudentError('File size must be less than 5MB');
-                return;
-            }
-            setSignature(file);
-            const reader = new FileReader();
-            reader.onloadend = () => setPreviewSignatureImage(reader.result);
-            reader.readAsDataURL(file);
+        const file = inputSignatureImageRef.current?.files?.[0];
+        if (!file) return;
+
+        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
+        if (!validTypes.includes(file.type)) {
+            setCreateStudentError('Only JPG, PNG, GIF, or AVIF files are allowed');
+            return;
         }
+        if (file.size > 5 * 1024 * 1024) {
+            setCreateStudentError('File size must be less than 5MB');
+            return;
+        }
+
+        setSignature(file);
+        const reader = new FileReader();
+        reader.onloadend = () => setPreviewSignatureImage(reader.result);
+        reader.readAsDataURL(file);
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setCreateStudentError('');
         setCreateStudentLoading(true);
 
+        if (!eiinValue) {
+            setCreateStudentLoading(false);
+            toast.error("Invalid URL: missing institution ID.", { position: "top-right" });
+            return;
+        }
+
         if (!studentIdAvailable) {
-            toast.error("Student ID must be unique!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            toast.error("Student ID must be unique!", { position: "top-right" });
             setCreateStudentLoading(false);
             return;
         }
 
-        // Validate required fields
         if (!image) {
             setCreateStudentError('Student image is required');
             setCreateStudentLoading(false);
             return;
         }
 
-        // Create FormData object
-        const data = new FormData();
-        for (const [key, value] of Object.entries(formData)) {
-            if (value) data.append(key, value);
-        }
-        if (image) data.append('image', image, `${image.name}`);
-        if (signature) data.append('signature', signature, `${signature.name}`);
-
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+            const data = new FormData();
+            Object.entries(formData).forEach(([key, value]) => {
+                if (value !== undefined && value !== null && value !== '') data.append(key, value);
+            });
+            data.append('image', image, `${image.name}`);
+            if (signature) data.append('signature', signature, `${signature.name}`);
+
+            await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`, data, {
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
 
             setCreateStudentSuccess(true);
@@ -199,68 +243,17 @@ const DashStudentComponent = () => {
             setCreateStudentSuccess(false);
             setStudentIdAvailabilityToggled(false);
             setStudentIdAvailable(false);
-            e.target.reset();
-            toast.success("Student Created Successfully!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+
+            toast.success("Student Created Successfully!", { position: "top-right" });
+
+            // refresh list
+            featchFullStudentData(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`);
         } catch (err) {
             console.error('Error Creating Student:', err);
             setCreateStudentLoading(false);
-            toast.error("Something went wrong! Unable to create student.", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            toast.error("Something went wrong! Unable to create student.", { position: "top-right" });
         }
     };
-
-    // Handle dropdown toggle
-    const handleDropdownToggle = (e) => {
-        e.preventDefault();
-        setDropdownOpen((prev) => !prev);
-    };
-
-    // Handle dropdown select
-    const handleDropdownSelect = (type) => {
-        setSearchType(type);
-        setDropdownOpen(false);
-        inputRef.current?.focus();
-    };
-
-    // Handle search input
-    const handleSearchInput = (e) => {
-        setSearchValue(e.target.value);
-    };
-
-    // Handle search
-    const handleSearch = (e) => {
-        e.preventDefault();
-        alert(`Searching by ${searchType}: ${searchValue}`);
-    };
-
-    // Handle create toggle
-    const handleCreate = () => {
-        setIsCreating(true);
-    };
-
-    // Fetch student data
-    const { fullStudentData, featchFullStudentData, fullStudentLoading, fullStudentError } = useContext(FullStudentInfoContext);
-
-    if (!fullStudentData) {
-        featchFullStudentData(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`);
-    }
 
     return (
         <div>
@@ -291,11 +284,7 @@ const DashStudentComponent = () => {
                                                     stroke="currentColor"
                                                     className="h-4 w-4 ml-1"
                                                 >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                                                    />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                 </svg>
                                             </button>
                                             <div className="h-6 border-l border-slate-200 ml-1" />
@@ -331,12 +320,7 @@ const DashStudentComponent = () => {
                                             className="absolute right-1 top-1 rounded bg-slate-800 p-1.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             type="submit"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 16 16"
-                                                fill="currentColor"
-                                                className="w-4 h-4"
-                                            >
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
                                                 <path
                                                     fillRule="evenodd"
                                                     d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
@@ -345,22 +329,24 @@ const DashStudentComponent = () => {
                                             </svg>
                                         </button>
                                     </div>
-                                </form>
-                                {/* Create new student button */}
-                                <div>
-                                    <button
-                                        onClick={handleCreate}
-                                        className={`flex items-center mt-1 p-2 rounded-lg text-black group bg-white`}
-                                    >
-                                        <IoCreateOutline className={`w-5 h-5 transition duration-75`} />
-                                        <span className="flex-1 ms-3 whitespace-nowrap">Create</span>
-                                    </button>
                                 </div>
+                            </form>
+
+                            {/* Create new student button */}
+                            <div>
+                                <button
+                                    onClick={handleCreate}
+                                    className="flex items-center mt-1 p-2 rounded-lg text-black group bg-white"
+                                >
+                                    <IoCreateOutline className="w-5 h-5 transition duration-75" />
+                                    <span className="flex-1 ms-3 whitespace-nowrap">Create</span>
+                                </button>
                             </div>
                         </div>
                     )}
                 </div>
             </div>
+
             {/* Form for creating new student */}
             {isCreating && (
                 <div className='relative'>
@@ -372,7 +358,7 @@ const DashStudentComponent = () => {
                                     <div className="avatar">
                                         <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
                                             <img
-                                                src={previewProfileImage || "/public/no_image.png"}
+                                                src={previewProfileImage || "/no_image.png"}
                                                 alt="Profile Preview"
                                             />
                                         </div>
@@ -387,6 +373,7 @@ const DashStudentComponent = () => {
                                             ref={inputProfileImageRef}
                                         />
                                         <button
+                                            type="button"
                                             onClick={() => inputProfileImageRef.current?.click()}
                                             className="mt-4 text-sm text-gray-500 py-2 px-4 rounded bg-gray-200/80 hover:bg-gray-300 cursor-pointer"
                                         >
@@ -394,6 +381,7 @@ const DashStudentComponent = () => {
                                         </button>
                                     </div>
                                 </div>
+
                                 <div className='grid grid-cols-2 gap-x-10 gap-y-2 mt-10'>
                                     {/* Student Name English */}
                                     <div className="mb-4">
@@ -407,7 +395,8 @@ const DashStudentComponent = () => {
                                             required
                                         />
                                     </div>
-                                    {/* Student Name (Bangla) */}
+
+                                    {/* Student Name Bangla */}
                                     <div className="mb-4">
                                         <label htmlFor='name_bng' className="block mb-1 font-medium">Name (Bangla)</label>
                                         <input
@@ -419,17 +408,19 @@ const DashStudentComponent = () => {
                                             required
                                         />
                                     </div>
+
                                     {/* Student ID */}
                                     <div className="mb-4 relative">
                                         <label htmlFor='student_id' className="block mb-1 font-medium">Student ID</label>
                                         <input
                                             type="text"
-                                            className={`w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400 ${!studentIdAvailable && studentIdAvailabilityToggled && "focus:border-red-400"} `}
+                                            className={`w-full border rounded px-3 py-2 focus:outline-none ${!studentIdAvailable && studentIdAvailabilityToggled ? "border-red-400 focus:border-red-400" : "border-gray-300 focus:border-blue-400"}`}
                                             value={formData.student_id}
                                             name='student_id'
                                             onChange={handleInputChange}
                                             required
                                         />
+
                                         {studentIdAvailabilityToggled && (
                                             <div className='absolute -bottom-6'>
                                                 {!studentIdAvailable && (
@@ -447,6 +438,7 @@ const DashStudentComponent = () => {
                                             </div>
                                         )}
                                     </div>
+
                                     {/* Class Roll */}
                                     <div className="mb-4">
                                         <label htmlFor='class_roll' className="block mb-1 font-medium">Class Roll</label>
@@ -459,6 +451,7 @@ const DashStudentComponent = () => {
                                             required
                                         />
                                     </div>
+
                                     {/* Batch ID */}
                                     <div className="mb-4">
                                         <label htmlFor='batch_id' className="block mb-1 font-medium">Batch ID</label>
@@ -471,6 +464,7 @@ const DashStudentComponent = () => {
                                             required
                                         />
                                     </div>
+
                                     {/* Class ID */}
                                     <div className="mb-4">
                                         <label htmlFor='class_id' className="block mb-1 font-medium">Class ID</label>
@@ -482,6 +476,7 @@ const DashStudentComponent = () => {
                                             onChange={handleInputChange}
                                         />
                                     </div>
+
                                     {/* Section ID */}
                                     <div className="mb-4">
                                         <label htmlFor='section_id' className="block mb-1 font-medium">Section ID</label>
@@ -493,6 +488,7 @@ const DashStudentComponent = () => {
                                             onChange={handleInputChange}
                                         />
                                     </div>
+
                                     {/* Student Email */}
                                     <div className="mb-4">
                                         <label htmlFor='email' className="block mb-1 font-medium">Student Email</label>
@@ -505,6 +501,7 @@ const DashStudentComponent = () => {
                                             required
                                         />
                                     </div>
+
                                     {/* Student Phone Number */}
                                     <div className="mb-4">
                                         <label htmlFor='phone_number' className="block mb-1 font-medium">Student Phone Number</label>
@@ -517,6 +514,7 @@ const DashStudentComponent = () => {
                                             required
                                         />
                                     </div>
+
                                     {/* Permanent Address */}
                                     <div className="mb-4">
                                         <label htmlFor='parmanent_adress' className="block mb-1 font-medium">Permanent Address</label>
@@ -528,11 +526,13 @@ const DashStudentComponent = () => {
                                             onChange={handleInputChange}
                                         />
                                     </div>
+
                                     {/* Present Address */}
                                     <div className="mb-4">
                                         <div className='flex items-center justify-between'>
                                             <label htmlFor='present_adress' className="block mb-1 font-medium">Present Address</label>
-                                            <div>
+                                            <div className='flex items-center'>
+                                                {/* Implement "same as permanent" if you want; currently only the checkbox UI */}
                                                 <input type="checkbox" name='permanentCheck' id='permanentCheck' />
                                                 <label className='ml-1' htmlFor="permanentCheck">Same as Permanent Address</label>
                                             </div>
@@ -545,6 +545,7 @@ const DashStudentComponent = () => {
                                             onChange={handleInputChange}
                                         />
                                     </div>
+
                                     <div className="mb-4 flex items-center gap-x-6">
                                         {/* Date of Birth */}
                                         <div>
@@ -558,6 +559,7 @@ const DashStudentComponent = () => {
                                                 required
                                             />
                                         </div>
+
                                         {/* Status */}
                                         <div>
                                             <label htmlFor="status" className="block mb-1 font-medium">Status</label>
@@ -575,6 +577,7 @@ const DashStudentComponent = () => {
                                             </select>
                                         </div>
                                     </div>
+
                                     <div className="mb-4 flex items-center gap-4">
                                         {/* Signature */}
                                         <div>
@@ -592,6 +595,7 @@ const DashStudentComponent = () => {
                                                     <img className='w-full h-full object-cover' src={previewSignatureImage || ''} alt="" />
                                                 </div>
                                                 <button
+                                                    type="button"
                                                     onClick={() => inputSignatureImageRef.current?.click()}
                                                     className="text-sm text-gray-500 py-4 px-4 rounded bg-gray-200/80 hover:bg-gray-300 cursor-pointer"
                                                 >
@@ -599,6 +603,7 @@ const DashStudentComponent = () => {
                                                 </button>
                                             </div>
                                         </div>
+
                                         {/* Blood Group */}
                                         <div>
                                             <label htmlFor="blood_group" className="block mb-1 font-medium">Blood Group</label>
@@ -619,6 +624,7 @@ const DashStudentComponent = () => {
                                                 <option value="O-">O-</option>
                                             </select>
                                         </div>
+
                                         {/* Gender */}
                                         <div>
                                             <label htmlFor="gender" className="block mb-1 font-medium">Gender</label>
@@ -635,6 +641,7 @@ const DashStudentComponent = () => {
                                                 <option value="other">Other</option>
                                             </select>
                                         </div>
+
                                         {/* Religion */}
                                         <div>
                                             <label htmlFor="religion" className="block mb-1 font-medium">Religion</label>
@@ -655,6 +662,7 @@ const DashStudentComponent = () => {
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className='w-full flex items-center justify-center mt-6'>
                                     <button
                                         type="submit"
@@ -666,11 +674,13 @@ const DashStudentComponent = () => {
                             </div>
                         </form>
                     </div>
+
                     <div className='relative left-[83rem] bottom-[51rem]'>
-                        <button onClick={() => setIsCreating(false)}>
+                        <button type="button" onClick={() => setIsCreating(false)}>
                             <MdCancel className='text-2xl' />
                         </button>
                     </div>
+
                     {createStudentLoading && (
                         <div className='absolute top-1/2 right-1/2 -translate-1/2'>
                             <Lottie animationData={loadingLottie} loop={true} />
@@ -678,27 +688,36 @@ const DashStudentComponent = () => {
                     )}
                 </div>
             )}
+
             {/* Displaying Student List */}
             <div className='mt-10 px-4'>
-                {fullStudentData?.length === 0 && !fullStudentError && !fullStudentLoading && (
+                {(!fullStudentData || fullStudentData.length === 0) && !fullStudentError && !fullStudentLoading && (
                     <div className='w-full min-h-[35rem] flex items-center justify-center'>
                         <h1 className='text-2xl text-gray-400/95'>No student found!</h1>
                     </div>
                 )}
+
                 {!fullStudentError && fullStudentLoading && (
                     <div className='w-full min-h-[35rem] flex items-center justify-center'>
                         <Lottie animationData={loadingLottie} loop={true} />
                     </div>
                 )}
-                {fullStudentData?.length > 0 && !fullStudentError && !fullStudentLoading && (
+
+                {Array.isArray(fullStudentData) && fullStudentData.length > 0 && !fullStudentError && !fullStudentLoading && (
                     <div className='grid grid-cols-4 gap-6'>
-                        {fullStudentData?.map(studentData => (
+                        {fullStudentData.map((studentData) => (
                             <EachDashStudent
-                                key={studentData.id}
+                                key={studentData._id || studentData.id}
                                 studentData={studentData}
                                 featchFullStudentData={featchFullStudentData}
                             />
                         ))}
+                    </div>
+                )}
+
+                {fullStudentError && (
+                    <div className='w-full min-h-[10rem] flex items-center justify-center'>
+                        <p className='text-red-600'>Failed to load students.</p>
                     </div>
                 )}
             </div>

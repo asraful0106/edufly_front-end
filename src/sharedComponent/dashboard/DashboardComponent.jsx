@@ -3,6 +3,7 @@ import './Dashboard.css';
 import { NavLink, Outlet, useLocation } from 'react-router';
 import { FaChalkboardTeacher } from "react-icons/fa";
 import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
+import { PiStudent } from "react-icons/pi";
 
 const DashboardComponent = () => {
     const { data } = useContext(EiiContext);
@@ -47,6 +48,15 @@ const DashboardComponent = () => {
                                     >
                                         <FaChalkboardTeacher className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("teacher") ? "text-white" : ""}`} />
                                         <span className="flex-1 ms-3 whitespace-nowrap">Teacher</span>
+                                    </NavLink>
+                                </li>
+                                {/* Student */}
+                                <li>
+                                    <NavLink to={`/${data?.eiin}/dashboard/student`}
+                                        className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${currentLocation?.pathname.toString().includes("student") ? "bg-gray-700" : ""}`}
+                                    >
+                                        <PiStudent className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("student") ? "text-white" : ""}`} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Student</span>
                                     </NavLink>
                                 </li>
                             </ul>

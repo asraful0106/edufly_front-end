@@ -6,28 +6,32 @@ import PostContextProvider from './contextapi/post/PostContextProvider';
 import PostModalContextProvider from './contextapi/postModal/PostModalContextProvider';
 import BasicTeacherInfoContextProvider from './contextapi/basicTeacheEnfo/BasicTeacherInfoContextProvider';
 import FullTeacherInfoContextProvider from './contextapi/fullTeacherInfo/fullTeacherInfoContextProvider';
+import FullStudentInfoContextProvider from './contextapi/fullStudentEnfo/FullStudentInfoContextProvider';
 
 const MainLayout = () => {
     return (
-        // Context to handle full Teacher Data for dash board
-        <FullTeacherInfoContextProvider>
-             {/* Context to handle Basci Teacher Data */}
-            <BasicTeacherInfoContextProvider>
-                {/* Context to handle PostModal */}
-                <PostModalContextProvider>
-                    {/* Context for Post */}
-                    <PostContextProvider>
-                        {/* Context for Notice */}
-                        <NoticeContextProvider>
-                            {/* Context for Search */}
-                            <EiiSearchContextProvider>
-                                <Outlet />
-                            </EiiSearchContextProvider>
-                        </NoticeContextProvider>
-                    </PostContextProvider>
-                </PostModalContextProvider>
-            </BasicTeacherInfoContextProvider>
-        </FullTeacherInfoContextProvider>
+        // Context to handle full Student Data for dash board
+        <FullStudentInfoContextProvider>
+        {/* Context to handle full Teacher Data for dash board */}
+            <FullTeacherInfoContextProvider>
+                {/* Context to handle Basci Teacher Data */}
+                <BasicTeacherInfoContextProvider>
+                    {/* Context to handle PostModal */}
+                    <PostModalContextProvider>
+                        {/* Context for Post */}
+                        <PostContextProvider>
+                            {/* Context for Notice */}
+                            <NoticeContextProvider>
+                                {/* Context for Search */}
+                                <EiiSearchContextProvider>
+                                    <Outlet />
+                                </EiiSearchContextProvider>
+                            </NoticeContextProvider>
+                        </PostContextProvider>
+                    </PostModalContextProvider>
+                </BasicTeacherInfoContextProvider>
+            </FullTeacherInfoContextProvider>
+        </FullStudentInfoContextProvider>
     );
 };
 

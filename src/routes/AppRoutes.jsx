@@ -13,6 +13,7 @@ import DashboardComponent from '../sharedComponent/dashboard/DashboardComponent'
 import GalleryCompnent from '../sharedComponent/gallery/GalleryCompnent';
 import DashboardComponentChild from '../sharedComponent/dashboardComponent/DashboardComponentChild';
 import DashTeacherComponent from '../sharedComponent/dashTeacher/DashTeacherComponent';
+import DashStudentComponent from '../sharedComponent/dashStudentCreateAdmin/DashStudentComponent';
 
 const AppRoutes = () => {
     return (
@@ -30,6 +31,7 @@ const AppRoutes = () => {
                         <Route path='/:id/dashboard' element={<DashboardComponent />}>
                             <Route path='/:id/dashboard' element={<DashboardComponentChild/>}/>
                             <Route path='/:id/dashboard/teacher' element={<DashTeacherComponent/>}/>
+                            <Route path='/:id/dashboard/student' element={<DashStudentComponent/>}/>
                         </Route>
                     </Route>
                 </Route>

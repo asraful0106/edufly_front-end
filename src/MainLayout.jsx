@@ -7,31 +7,35 @@ import PostModalContextProvider from './contextapi/postModal/PostModalContextPro
 import BasicTeacherInfoContextProvider from './contextapi/basicTeacheEnfo/BasicTeacherInfoContextProvider';
 import FullTeacherInfoContextProvider from './contextapi/fullTeacherInfo/fullTeacherInfoContextProvider';
 import FullStudentInfoContextProvider from './contextapi/fullStudentEnfo/FullStudentInfoContextProvider';
+import BatchContextProvider from './contextapi/batch/BatchContextProvider';
 
 const MainLayout = () => {
     return (
-        // Context to handle full Student Data for dash board
-        <FullStudentInfoContextProvider>
-        {/* Context to handle full Teacher Data for dash board */}
-            <FullTeacherInfoContextProvider>
-                {/* Context to handle Basci Teacher Data */}
-                <BasicTeacherInfoContextProvider>
-                    {/* Context to handle PostModal */}
-                    <PostModalContextProvider>
-                        {/* Context for Post */}
-                        <PostContextProvider>
-                            {/* Context for Notice */}
-                            <NoticeContextProvider>
-                                {/* Context for Search */}
-                                <EiiSearchContextProvider>
-                                    <Outlet />
-                                </EiiSearchContextProvider>
-                            </NoticeContextProvider>
-                        </PostContextProvider>
-                    </PostModalContextProvider>
-                </BasicTeacherInfoContextProvider>
-            </FullTeacherInfoContextProvider>
-        </FullStudentInfoContextProvider>
+        // Context to handle Batch
+        <BatchContextProvider>
+            {/* Context to handle full Student Data for dash board */}
+            <FullStudentInfoContextProvider>
+                {/* Context to handle full Teacher Data for dash board */}
+                <FullTeacherInfoContextProvider>
+                    {/* Context to handle Basci Teacher Data */}
+                    <BasicTeacherInfoContextProvider>
+                        {/* Context to handle PostModal */}
+                        <PostModalContextProvider>
+                            {/* Context for Post */}
+                            <PostContextProvider>
+                                {/* Context for Notice */}
+                                <NoticeContextProvider>
+                                    {/* Context for Search */}
+                                    <EiiSearchContextProvider>
+                                        <Outlet />
+                                    </EiiSearchContextProvider>
+                                </NoticeContextProvider>
+                            </PostContextProvider>
+                        </PostModalContextProvider>
+                    </BasicTeacherInfoContextProvider>
+                </FullTeacherInfoContextProvider>
+            </FullStudentInfoContextProvider>
+        </BatchContextProvider>
     );
 };
 

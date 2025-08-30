@@ -12,6 +12,7 @@ import Lottie from 'lottie-react';
 import loadingLottie from '../../lottie/loading.json';
 import EachDashStudent from './EachDashStudent';
 import FullStudentInfoContext from '../../contextapi/fullStudentEnfo/FullStudentInfoContext';
+import BatchContext from '../../contextapi/batch/BatchContext';
 
 const DashStudentComponent = () => {
     const currentLocation = useLocation();
@@ -34,9 +35,7 @@ const DashStudentComponent = () => {
         name_eng: '',
         name_bng: '',
         student_id: '',
-        batch_id: '',
-        class_id: '',
-        section_id: '',
+        batch_id: '', // will hold the batch's primary key (id)
         class_roll: '',
         email: '',
         phone_number: '',
@@ -70,7 +69,8 @@ const DashStudentComponent = () => {
     // ---- Context for fetching & listing ----
     const { fullStudentData, featchFullStudentData, fullStudentLoading, fullStudentError } =
         useContext(FullStudentInfoContext);
-        console.log(fullStudentError);
+    // ---- Context for Batch ----
+    const { batchData, fetchAllBatch } = useContext(BatchContext);
 
     // ---- Memoized debounced check; cancel on unmount ----
     const debouncedCheckStudentId = useMemo(
@@ -94,14 +94,26 @@ const DashStudentComponent = () => {
         return () => debouncedCheckStudentId.cancel();
     }, [debouncedCheckStudentId]);
 
-    // ---- Fetch the student list when eiinValue becomes available ----
+    // ---- Fetch the student list and batch data when eiinValue becomes available ----
     useEffect(() => {
         if (eiinValue) {
             featchFullStudentData(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`);
+            fetchAllBatch(`${import.meta.env.VITE_BACKEND_LINK}/batch`, eiinValue);
             console.log(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eiinValue]);
+
+    // ---- Auto-select first batch when batchData loads (prevents empty batch_id) ----
+    useEffect(() => {
+        if (batchData?.length && !formData.batch_id) {
+            setFormData(prev => ({
+                ...prev,
+                batch_id: String(batchData[0].id ?? batchData[0]._id)
+            }));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [batchData]);
 
     // ---- Handlers ----
     const handleDropdownToggle = (e) => {
@@ -119,7 +131,6 @@ const DashStudentComponent = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // plug your API search here if needed
         alert(`Searching by ${searchType}: ${searchValue}`);
     };
 
@@ -202,6 +213,12 @@ const DashStudentComponent = () => {
             return;
         }
 
+        if (!formData.batch_id) {
+            toast.error("Please select a batch.", { position: "top-right" });
+            setCreateStudentLoading(false);
+            return;
+        }
+
         try {
             const data = new FormData();
             Object.entries(formData).forEach(([key, value]) => {
@@ -209,6 +226,7 @@ const DashStudentComponent = () => {
             });
             data.append('image', image, `${image.name}`);
             if (signature) data.append('signature', signature, `${signature.name}`);
+            console.log("From Data: ", formData);
 
             await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/student/${eiinValue}`, data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
@@ -219,9 +237,7 @@ const DashStudentComponent = () => {
                 name_eng: '',
                 name_bng: '',
                 student_id: '',
-                batch_id: '',
-                class_id: '',
-                section_id: '',
+                batch_id: batchData?.length ? String(batchData[0].id ?? batchData[0]._id) : '',
                 class_roll: '',
                 email: '',
                 phone_number: '',
@@ -453,40 +469,26 @@ const DashStudentComponent = () => {
                                     </div>
 
                                     {/* Batch ID */}
-                                    <div className="mb-4">
-                                        <label htmlFor='batch_id' className="block mb-1 font-medium">Batch ID</label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400"
-                                            value={formData.batch_id}
-                                            name='batch_id'
+                                    <div>
+                                        <label htmlFor="batch_id" className="block mb-1 font-medium">Batch</label>
+                                        <select
+                                            name="batch_id"
+                                            id="batch_id"
+                                            value={formData.batch_id || ""}
                                             onChange={handleInputChange}
+                                            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400 bg-white"
                                             required
-                                        />
-                                    </div>
-
-                                    {/* Class ID */}
-                                    <div className="mb-4">
-                                        <label htmlFor='class_id' className="block mb-1 font-medium">Class ID</label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400"
-                                            value={formData.class_id}
-                                            name='class_id'
-                                            onChange={handleInputChange}
-                                        />
-                                    </div>
-
-                                    {/* Section ID */}
-                                    <div className="mb-4">
-                                        <label htmlFor='section_id' className="block mb-1 font-medium">Section ID</label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400"
-                                            value={formData.section_id}
-                                            name='section_id'
-                                            onChange={handleInputChange}
-                                        />
+                                        >
+                                            <option value="" disabled>Select batch</option>
+                                            {batchData?.map((b) => (
+                                                <option
+                                                    key={b.id || b._id}
+                                                    value={String(b.id ?? b._id)}  // send primary key id
+                                                >
+                                                    {b.batch_code}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
 
                                     {/* Student Email */}
@@ -532,7 +534,6 @@ const DashStudentComponent = () => {
                                         <div className='flex items-center justify-between'>
                                             <label htmlFor='present_adress' className="block mb-1 font-medium">Present Address</label>
                                             <div className='flex items-center'>
-                                                {/* Implement "same as permanent" if you want; currently only the checkbox UI */}
                                                 <input type="checkbox" name='permanentCheck' id='permanentCheck' />
                                                 <label className='ml-1' htmlFor="permanentCheck">Same as Permanent Address</label>
                                             </div>

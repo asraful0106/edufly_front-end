@@ -265,12 +265,16 @@ const EachDashStudent = ({ studentData, featchFullStudentData }) => {
                             {studentData?.name_eng}
                         </h6>
                         <div className="flex items-center gap-0 5 ml-auto">
-                            <p className="text-slate-600 text-[12px] ml-1.5">Roll: {studentData?.class_roll}</p>
+                            <p className="text-slate-600 text-[12px] ml-1.5">Student Id: {studentData?.student_id}</p>
                         </div>
                     </div>
-                    <p className="text-slate-600 leading-normal font-light">
-                        Batch: {studentData?.batch_id}, Class: {studentData?.class_id}, Section: {studentData?.section_id}
-                    </p>
+                    {(studentData?.batch?.batch_code || studentData?.class_id || studentData?.section_id) && (
+                        <p className="text-slate-600 leading-normal font-light">
+                            {studentData?.batch?.batch_code && <>Batch: {studentData.batch.batch_code}</>}
+                            {studentData?.class_id && <> {studentData?.batch?.batch_code ? ', ' : ''}Class: {studentData.class_id}</>}
+                            {studentData?.section_id && <> {(studentData?.batch?.batch_code || studentData?.class_id) ? ', ' : ''}Section: {studentData.section_id}</>}
+                        </p>
+                    )}
                 </div>
                 <div className="px-4 pb-4 pt-0 mt-2">
                     <div className='w-full flex items-center justify-center gap-6'>

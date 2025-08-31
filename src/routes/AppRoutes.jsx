@@ -14,6 +14,8 @@ import GalleryCompnent from '../sharedComponent/gallery/GalleryCompnent';
 import DashboardComponentChild from '../sharedComponent/dashboardComponent/DashboardComponentChild';
 import DashTeacherComponent from '../sharedComponent/dashTeacher/DashTeacherComponent';
 import DashStudentComponent from '../sharedComponent/dashStudentCreateAdmin/DashStudentComponent';
+import AcademicSetup from '../sharedComponent/academicSetup/AcademicSetup';
+import ManageStudent from '../sharedComponent/manageStudent/ManageStudent';
 
 const AppRoutes = () => {
     return (
@@ -32,6 +34,8 @@ const AppRoutes = () => {
                             <Route path='/:id/dashboard' element={<DashboardComponentChild/>}/>
                             <Route path='/:id/dashboard/teacher' element={<DashTeacherComponent/>}/>
                             <Route path='/:id/dashboard/student' element={<DashStudentComponent/>}/>
+                            <Route path='/:id/dashboard/academic-setup' element={<AcademicSetup />} />
+                            <Route path='/:id/dashboard/manage-tudents' element={<ManageStudent />} />
                         </Route>
                     </Route>
                 </Route>

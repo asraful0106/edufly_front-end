@@ -4,6 +4,8 @@ import { NavLink, Outlet, useLocation } from 'react-router';
 import { FaChalkboardTeacher } from "react-icons/fa";
 import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { PiStudent } from "react-icons/pi";
+import { HiOutlineAcademicCap } from "react-icons/hi";
+import { MdManageAccounts } from "react-icons/md";
 
 const DashboardComponent = () => {
     const { data } = useContext(EiiContext);
@@ -57,6 +59,24 @@ const DashboardComponent = () => {
                                     >
                                         <PiStudent className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("student") ? "text-white" : ""}`} />
                                         <span className="flex-1 ms-3 whitespace-nowrap">Student</span>
+                                    </NavLink>
+                                </li>
+                                {/* Academic Setup */}
+                                <li>
+                                    <NavLink to={`/${data?.eiin}/dashboard/academic-setup`}
+                                        className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${currentLocation?.pathname.toString().includes("academic-setup") ? "bg-gray-700" : ""}`}
+                                    >
+                                        <HiOutlineAcademicCap className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("academic-setup") ? "text-white" : ""}`} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Academic Setup</span>
+                                    </NavLink>
+                                </li>
+                                {/* Manage Student*/}
+                                <li>
+                                    <NavLink to={`/${data?.eiin}/dashboard/manage-tudents`}
+                                        className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${currentLocation?.pathname.toString().includes("manage-tudents") ? "bg-gray-700" : ""}`}
+                                    >
+                                        <MdManageAccounts className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("manage-tudents") ? "text-white" : ""}`} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Manage Student</span>
                                     </NavLink>
                                 </li>
                             </ul>

@@ -51,8 +51,8 @@ export default function ManageStudent() {
         setLoading(true); setError("");
         try {
             const [b, c] = await Promise.all([
-                http.get("/api/academic/batches", { params: { institution_id: institutionId } }),
-                http.get("/api/academic/classes", { params: { institution_id: institutionId } }),
+                http.get("/batch", { params: { institution_id: institutionId } }),
+                http.get("/classes", { params: { institution_id: institutionId } }),
             ]);
             setBatches(b.data.data || []);
             setClasses(c.data.data || []); // each has course + batch_code
@@ -67,17 +67,18 @@ export default function ManageStudent() {
         if (!institutionId) return;
         setLoading(true); setError("");
         try {
-            const resp = await http.get("/api/students", {
-                params: {
-                    institution_id: institutionId,
-                    q,
-                    batch_id: filters.batch_id || undefined,
-                    class_id: filters.class_id || undefined,
-                    section_id: filters.section_id || undefined,
-                    skip: 0,
-                    take: 50,
-                },
-            });
+            // const resp = await http.get("/student", {
+            //     params: {
+            //         institution_id: institutionId,
+            //         q,
+            //         batch_id: filters.batch_id || undefined,
+            //         class_id: filters.class_id || undefined,
+            //         section_id: filters.section_id || undefined,
+            //         skip: 0,
+            //         take: 50,
+            //     },
+            // });
+            const resp = await http.get(`/student/${institutionId}`);
             setStudents(resp.data.data || []);
             setTotal(resp.data.total || 0);
         } catch (e) {
@@ -94,7 +95,7 @@ export default function ManageStudent() {
     const ensureSections = async (class_id) => {
         if (!class_id || sectionsByClass[class_id]) return;
         try {
-            const resp = await http.get("/api/academic/sections", { params: { class_id } });
+            const resp = await http.get("/sections", { params: { class_id } });
             setSectionsByClass((m) => ({ ...m, [class_id]: resp.data.data || [] }));
         } catch (e) {
             console.warn("Failed to load sections for class", class_id, e?.message);
@@ -125,7 +126,7 @@ export default function ManageStudent() {
         if (!draft) return;
         setLoading(true);
         try {
-            const resp = await http.patch(`/api/students/${sid}/placement`, {
+            const resp = await http.patch(`/student/${sid}/placement`, {
                 batch_id: draft.batch_id || null,
                 class_id: draft.class_id || null,
                 section_id: draft.section_id || null,
@@ -145,7 +146,7 @@ export default function ManageStudent() {
         if (!confirm("Delete this student?")) return;
         setLoading(true);
         try {
-            await http.delete(`/api/students/${sid}`);
+            await http.delete(`/student/${sid}`);
             setStudents((rows) => rows.filter((r) => r.id !== sid));
         } catch (e) {
             alert(e?.response?.data?.message || e.message);
@@ -180,7 +181,7 @@ export default function ManageStudent() {
         if (!editId) return;
         setLoading(true);
         try {
-            const resp = await http.patch(`/api/students/${editId}`, { ...form });
+            const resp = await http.patch(`/student/${editId}`, { ...form });
             setStudents((rows) => rows.map((r) => (r.id === editId ? { ...r, ...resp.data.data } : r)));
             setEditId(null);
             setForm(emptyStudent);
@@ -321,7 +322,7 @@ export default function ManageStudent() {
                                         <td className="py-2 px-3">
                                             <div className="flex items-center gap-3">
                                                 <img
-                                                    src={s.image || "/no_image.png"}
+                                                    src={`${import.meta.env.VITE_BACKEND_LINK}/image/student/${s.image}`}
                                                     alt={s.name_eng}
                                                     className="h-9 w-9 rounded-full object-cover border"
                                                     onError={(e) => (e.currentTarget.src = "/no_image.png")}

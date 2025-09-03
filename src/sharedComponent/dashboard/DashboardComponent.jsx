@@ -6,6 +6,7 @@ import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { PiStudent } from "react-icons/pi";
 import { HiOutlineAcademicCap } from "react-icons/hi";
 import { MdManageAccounts } from "react-icons/md";
+import { MdOutlinePublishedWithChanges } from "react-icons/md";
 
 const DashboardComponent = () => {
     const { data } = useContext(EiiContext);
@@ -77,6 +78,15 @@ const DashboardComponent = () => {
                                     >
                                         <MdManageAccounts className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("manage-tudents") ? "text-white" : ""}`} />
                                         <span className="flex-1 ms-3 whitespace-nowrap">Manage Student</span>
+                                    </NavLink>
+                                </li>
+                                {/* Publish Result*/}
+                                <li>
+                                    <NavLink to={`/${data?.eiin}/dashboard/publish-result`}
+                                        className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${currentLocation?.pathname.toString().includes("publish-result") ? "bg-gray-700" : ""}`}
+                                    >
+                                        <MdOutlinePublishedWithChanges className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("publish-result") ? "text-white" : ""}`} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Publish Result</span>
                                     </NavLink>
                                 </li>
                             </ul>

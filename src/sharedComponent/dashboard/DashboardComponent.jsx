@@ -7,6 +7,7 @@ import { PiStudent } from "react-icons/pi";
 import { HiOutlineAcademicCap } from "react-icons/hi";
 import { MdManageAccounts } from "react-icons/md";
 import { MdOutlinePublishedWithChanges } from "react-icons/md";
+import { BsFileSpreadsheetFill } from "react-icons/bs";
 
 const DashboardComponent = () => {
     const { data } = useContext(EiiContext);
@@ -87,6 +88,15 @@ const DashboardComponent = () => {
                                     >
                                         <MdOutlinePublishedWithChanges className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("publish-result") ? "text-white" : ""}`} />
                                         <span className="flex-1 ms-3 whitespace-nowrap">Publish Result</span>
+                                    </NavLink>
+                                </li>
+                                {/* Student Attandence*/}
+                                <li>
+                                    <NavLink to={`/${data?.eiin}/dashboard/attandence`}
+                                        className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${currentLocation?.pathname.toString().includes("attandence") ? "bg-gray-700" : ""}`}
+                                    >
+                                        <BsFileSpreadsheetFill className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${currentLocation?.pathname.toString().includes("attandence") ? "text-white" : ""}`} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Attandence</span>
                                     </NavLink>
                                 </li>
                             </ul>

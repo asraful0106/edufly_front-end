@@ -299,7 +299,7 @@ const DashTeacherComponent = () => {
     const { fullTeacherData, featchFullTeacherData, fullTeacherLoading, fullTeacherError } = useContext(FullTeacherInfoCotext);
 
     if (!fullTeacherData) {
-        featchFullTeacherData(`${import.meta.env.VITE_BACKEND_LINK}/teacher/${eiinValue}`)
+        featchFullTeacherData(`${import.meta.env.VITE_BACKEND_LINK}/teacher?institution_id=${eiinValue}`)
     }
 
     // console.log("Full Teacher Data: ", fullTeacherData);

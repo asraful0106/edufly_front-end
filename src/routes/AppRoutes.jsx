@@ -96,6 +96,7 @@ import Login from '../pages/login/Login';
 import { AuthProvider } from '../contextapi/AuthContext';
 import { RequireAuth, RequireRole } from './gurd';
 import TeacherDashboard from '../sharedComponent/dashTeacherDashbord/TeacherDashboard';
+import StudentDashboard from '../sharedComponent/studentDashboard/studentDashboard';
 
 const AppRoutes = () => {
     return (
@@ -129,6 +130,10 @@ const AppRoutes = () => {
                                         <Route path="teacher-dashboard" element={<TeacherDashboard />} />
                                         <Route path="attandence" element={<StudenceAttandance />} />
                                         <Route path="teacherresult" element={<TeacherResultSubmission />} />
+                                    </Route>
+                                    {/* For student */}
+                                    <Route element={<RequireRole allow={['student']} />}>
+                                        <Route path="student-dashboard" element={<StudentDashboard />} />
                                     </Route>
                                 </Route>
                             </Route>

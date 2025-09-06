@@ -207,19 +207,19 @@ const DashboardComponent = () => {
                                 {role === 'student' && (
                                     <>
                                         {/* Student gets their dashboard (same as your child component route) */}
-                                        {/* <li>
+                                        <li>
                                             <NavLink
-                                                to={`/${institutionEIIN}/dashboard/student`}
-                                                className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${contains('student') ? 'bg-gray-700' : ''
+                                                to={`/${institutionEIIN}/dashboard/student-dashboard`}
+                                                className={`flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group ${contains('student-dashboard') ? 'bg-gray-700' : ''
                                                     }`}
                                             >
                                                 <PiStudent
-                                                    className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${contains('student') ? 'text-white' : ''
+                                                    className={`w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white ${contains('student-dashboard') ? 'text-white' : ''
                                                         }`}
                                                 />
                                                 <span className="flex-1 ms-3 whitespace-nowrap">My Dashboard</span>
                                             </NavLink>
-                                        </li> */}
+                                        </li>
                                     </>
                                 )}
 

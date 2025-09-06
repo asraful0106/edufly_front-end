@@ -95,6 +95,7 @@ import TeacherResultSubmission from '../sharedComponent/teacherResultSubmission/
 import Login from '../pages/login/Login';
 import { AuthProvider } from '../contextapi/AuthContext';
 import { RequireAuth, RequireRole } from './gurd';
+import TeacherDashboard from '../sharedComponent/dashTeacherDashbord/TeacherDashboard';
 
 const AppRoutes = () => {
     return (
@@ -125,7 +126,7 @@ const AppRoutes = () => {
                                     </Route>
                                     {/* For teacher */}
                                     <Route element={<RequireRole allow={['teacher']} />}>
-                                        <Route path="teacher-dashboard" element={<DashboardComponentChild />} />
+                                        <Route path="teacher-dashboard" element={<TeacherDashboard />} />
                                         <Route path="attandence" element={<StudenceAttandance />} />
                                         <Route path="teacherresult" element={<TeacherResultSubmission />} />
                                     </Route>

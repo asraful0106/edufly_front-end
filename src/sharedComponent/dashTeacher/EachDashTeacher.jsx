@@ -265,7 +265,7 @@ const EachDashTeacher = ({ teacherData, featchFullTeacherData }) => {
 
                     if (response.data.success) {
                         // Update teacher data
-                        featchFullTeacherData(`${import.meta.env.VITE_BACKEND_LINK}/teacher/${teacherData.institution_id}`);
+                        featchFullTeacherData(`${import.meta.env.VITE_BACKEND_LINK}/teacher?institution_id=${teacherData.institution_id}`);
                         Swal.fire({
                             title: "Deleted!",
                             text: "The teacher has been deleted.",

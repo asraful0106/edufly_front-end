@@ -745,7 +745,7 @@ const DashTeacherComponent = () => {
                 {/* When there is teacher */}
                 {
                     fullTeacherData?.length > 0 && !fullTeacherError && !fullTeacherLoading &&
-                    <div className='grid grid-cols-4 gap-6'>
+                    <div className='grid grid-cols-3 gap-6'>
                         {
                             fullTeacherData?.map(teacherData => (
                                 <EachDashTeacher key={teacherData.id} teacherData={teacherData} featchFullTeacherData = {featchFullTeacherData} />

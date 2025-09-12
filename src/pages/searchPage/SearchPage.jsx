@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef, useMemo, useCallback } from "react";
+import React, { useContext, useEffect, useState, useRef, useMemo } from "react";
 import Navigation from "../../sharedComponent/navigation/Navigation";
 import Footer from "../../sharedComponent/footer/Footer";
 import "./SearchPage.css";

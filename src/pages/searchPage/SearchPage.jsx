@@ -1,144 +1,176 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
-import Navigation from '../../sharedComponent/navigation/Navigation';
-import Footer from '../../sharedComponent/footer/Footer';
+import React, { useContext, useEffect, useState, useRef, useMemo, useCallback } from "react";
+import Navigation from "../../sharedComponent/navigation/Navigation";
+import Footer from "../../sharedComponent/footer/Footer";
 import "./SearchPage.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Lottie from 'lottie-react';
-import loadingLottie from '../../lottie/loading.json'
-import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
-import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router';
+import Lottie from "lottie-react";
+import loadingLottie from "../../lottie/loading.json";
+import EiiContext from "../../contextapi/eiiSearch/EiiSearchContext";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const SearchPage = () => {
     const navigate = useNavigate();
-    // Initilized AOS
+
+    // ✅ Init AOS (animation library)
     useEffect(() => {
-        AOS.init();
-        AOS.refresh();
+        AOS.init({ once: true });
     }, []);
-    // ** Manage Search Options **
+
+    // ✅ Manage search toggle
     const [isAdvanceSearch, setIsAdvanceSearch] = useState(true);
+    const [requestedEiin, setRequestedEiin] = useState(null);
+    const toggleSearchMode = (mode) => setIsAdvanceSearch(mode === "advance");
 
-    const handelSearchClick = () => {
-        setIsAdvanceSearch(false);
-    }
-    const handelAdvanceSearchClick = () => {
-        setIsAdvanceSearch(true);
-    }
-
-    // Getting the data 
+    // ✅ Context data
     const { data, loading, error, fetchData } = useContext(EiiContext);
 
-    // Ref for EIIN input
+    // ✅ Ref for EIIN input
     const eiinInputRef = useRef(null);
 
-    // Handle EIIN Search
+    // ✅ Toast config (memoized once)
+    const toastOptions = useMemo(
+        () => ({
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        }),
+        []
+    );
+
+    // ✅ Handle EIIN Search
+
     const handleEiinSearch = (e) => {
         e.preventDefault();
-        const eiinValue = eiinInputRef.current.value.trim();
-        // Call fetchData with the EIIN value
-        fetchData(`${import.meta.env.VITE_BACKEND_LINK}/search/eiin/${eiinValue}`);
+        const eiin = eiinInputRef.current.value.trim();
+        setRequestedEiin(eiin);
+        fetchData(`${import.meta.env.VITE_BACKEND_LINK}/search/eiin/${eiin}`);
     };
 
-    // Navigate when data is updated
+    // ✅ Navigate when data updates
     useEffect(() => {
-        if (data) {
-            navigate(`/${data?.eiin}`);
+        if (data?.eiin && data.eiin === requestedEiin) {
+            toast.success("Institution Found!", toastOptions);
+            navigate(`/${data.eiin}`);
         }
-    }, [data, navigate]);
+    }, [data?.eiin, requestedEiin, navigate]);
 
-    // Show error when it occurs
+    // ✅ Show error when it occurs
     useEffect(() => {
         if (error) {
-            const errorMessage = typeof error === "string" ? error : error.message || "An unknown error occurred";
-            toast.error(errorMessage, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            const errorMessage =
+                typeof error === "string" ? error : error?.message || "An unknown error occurred";
+            toast.error(errorMessage, toastOptions);
         }
-    }, [error]);
+    }, [error, toastOptions]);
 
     return (
-        <div className='flex flex-col min-h-screen bg-[#eeeeee]'>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
+        <div className="flex min-h-screen flex-col bg-[#eeeeee]">
+            <ToastContainer {...toastOptions} newestOnTop={false} rtl={false} pauseOnFocusLoss />
+
             {/* Navigation */}
             <Navigation location="/" />
-            <main className='flex-grow'>
-                <div className='flex items-center justify-center' style={{ height: 'calc(100vh - 10rem)' }}>
 
-                    <form onSubmit={handleEiinSearch} className='flex flex-col items-center justify-center bg-white px-3 py-6 rounded-xl' style={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}>
+            <main className="flex-grow">
+                <div
+                    className="flex items-center justify-center"
+                    style={{ height: "calc(100vh - 10rem)" }}
+                >
+                    {/* Search Form */}
+                    <form
+                        onSubmit={handleEiinSearch}
+                        className="flex flex-col items-center justify-center rounded-xl bg-white px-3 py-6 shadow-md"
+                    >
                         <div>
-                            {/* Company logo */}
-                            <div className='flex gap-0.5 w-full h-14 justify-center items-center'>
-                                <img className='w-14 h-full object-cover' src="/edufly_color_logo.png" alt="" />
-                                <h1 className='font-bold text-4xl'>Edufly</h1>
+                            {/* Logo */}
+                            <div className="flex h-14 w-full items-center justify-center gap-0.5">
+                                <img
+                                    className="h-full w-14 object-cover"
+                                    src="/edufly_color_logo.png"
+                                    alt="Edufly Logo"
+                                />
+                                <h1 className="text-4xl font-bold">Edufly</h1>
                             </div>
-                            {/* Search Option */}
-                            <div className='flex justify-center gap-12 mt-6'>
-                                <div className='hover:cursor-pointer' onClick={() => handelSearchClick()}>
-                                    <p className={`priventCopy font-medium ${!isAdvanceSearch ? 'text-[#40b0d4]' : 'text-black'}`}>Search</p>
-                                    {!isAdvanceSearch &&
-                                        <div className="divider p-0, m-0 h-0.5 bg-[#40b0d4]" data-aos="fade-left"></div>}
+
+                            {/* Search Toggle */}
+                            <div className="mt-6 flex justify-center gap-12">
+                                <div
+                                    className="hover:cursor-pointer"
+                                    onClick={() => toggleSearchMode("basic")}
+                                >
+                                    <p
+                                        className={`priventCopy font-medium ${!isAdvanceSearch ? "text-[#40b0d4]" : "text-black"
+                                            }`}
+                                    >
+                                        Search
+                                    </p>
+                                    {!isAdvanceSearch && (
+                                        <div
+                                            className="divider m-0 h-0.5 bg-[#40b0d4] p-0"
+                                            data-aos="fade-left"
+                                        />
+                                    )}
                                 </div>
 
-                                <div className='hover:cursor-pointer' onClick={() => handelAdvanceSearchClick()}>
-                                    <p className={`priventCopy font-medium ${isAdvanceSearch ? 'text-[#40b0d4]' : 'text-black'}`}>Advance Search</p>
-                                    {isAdvanceSearch &&
-                                        <div className="divider p-0, m-0 h-0.5 bg-[#40b0d4]" data-aos="fade-right"></div>}
+                                <div
+                                    className="hover:cursor-pointer"
+                                    onClick={() => toggleSearchMode("advance")}
+                                >
+                                    <p
+                                        className={`priventCopy font-medium ${isAdvanceSearch ? "text-[#40b0d4]" : "text-black"
+                                            }`}
+                                    >
+                                        Advance Search
+                                    </p>
+                                    {isAdvanceSearch && (
+                                        <div
+                                            className="divider m-0 h-0.5 bg-[#40b0d4] p-0"
+                                            data-aos="fade-right"
+                                        />
+                                    )}
                                 </div>
                             </div>
-                            {/* For Search */}
-                            {
-                                !isAdvanceSearch &&
+
+                            {/* Basic Search */}
+                            {!isAdvanceSearch && (
                                 <div data-aos="flip-up">
-                                    {/* Search Input */}
-                                    <div className='mt-12'>
+                                    <div className="mt-12">
                                         <label
                                             htmlFor="institution_name"
-                                            className="block mb-2 text-sm font-medium text-gray-900"
+                                            className="mb-2 block text-sm font-medium text-gray-900"
                                         >
                                             Institution Name
                                         </label>
                                         <input
                                             type="text"
                                             id="institution_name"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full min-w-[20rem] p-2.5"
+                                            className="block w-full min-w-[20rem] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                                             placeholder="Agrani School & College"
                                             required
                                         />
                                     </div>
-                                    {/* Search Submit Button */}
-                                    <button className='w-full mt-6 py-3 bg-[#39a6d0] font-bold text-white rounded-lg hover:bg-[#39a5d0d5] hover:cursor-pointer'>Search</button>
+                                    <button
+                                        type="submit"
+                                        className="mt-6 w-full rounded-lg bg-[#39a6d0] py-3 font-bold text-white hover:cursor-pointer hover:bg-[#39a5d0d5]"
+                                    >
+                                        Search
+                                    </button>
                                 </div>
-                            }
+                            )}
 
-                            {/* For Advance Search */}
-                            {
-                                isAdvanceSearch &&
+                            {/* Advance Search */}
+                            {isAdvanceSearch && (
                                 <div data-aos="flip-up">
-                                    {/* Search Input */}
-                                    <div className='mt-12'>
+                                    <div className="mt-12">
                                         <label
                                             htmlFor="institution_eiin"
-                                            className="block mb-2 text-sm font-medium text-gray-900"
+                                            className="mb-2 block text-sm font-medium text-gray-900"
                                         >
                                             EIIN Number
                                         </label>
@@ -146,29 +178,33 @@ const SearchPage = () => {
                                             type="text"
                                             id="institution_eiin"
                                             ref={eiinInputRef}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full min-w-[20rem] p-2.5"
+                                            className="block w-full min-w-[20rem] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                                             placeholder="126495"
                                             required
                                         />
                                     </div>
-                                    {/* Search Submit Button */}
-                                    <button type="submit" className='w-full mt-6 py-3 bg-[#39a6d0] font-bold text-white rounded-lg hover:bg-[#39a5d0d5] hover:cursor-pointer'>Search</button>
+                                    <button
+                                        type="submit"
+                                        className="mt-6 w-full rounded-lg bg-[#39a6d0] py-3 font-bold text-white hover:cursor-pointer hover:bg-[#39a5d0d5]"
+                                    >
+                                        Search
+                                    </button>
                                 </div>
-                            }
+                            )}
                         </div>
                     </form>
                 </div>
 
-                {/* Loading animation */}
-                {
-                    loading &&
-                    <div className='absolute left-0 right-0 top-[4.1rem] bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}>
-                        <div className='w-full h-full flex items-center justify-center' style={{ color: "black" }}>
-                            <Lottie animationData={loadingLottie} loop={true} />
+                {/* Loading Overlay */}
+                {loading && (
+                    <div className="absolute left-0 right-0 top-[4.1rem] bottom-0 bg-black/10">
+                        <div className="flex h-full w-full items-center justify-center">
+                            <Lottie animationData={loadingLottie} loop />
                         </div>
                     </div>
-                }
+                )}
             </main>
+
             {/* Footer */}
             <Footer />
         </div>

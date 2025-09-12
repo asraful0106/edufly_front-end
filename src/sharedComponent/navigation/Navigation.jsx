@@ -13,6 +13,7 @@ const Navigation = ({ name, location }) => {
     const { data, setData } = useContext(EiiContext);
     const { isAuthenticated, profile, logout } = useAuth();
     const currentLocation = useLocation();
+    const navigate = useNavigate();
 
     // Avatars (teacher/student/institution)
     const [tAvatarUrl, setTAvatarUrl] = useState('');
@@ -128,11 +129,14 @@ const Navigation = ({ name, location }) => {
     // Priority: teacher > student > institution > default
     const avatarSrc = tAvatarUrl || sAvatarUrl || iAvatarUrl || DEFAULT_AVATAR;
 
-    const navigate = useNavigate();
     const handleEduflyBrandClick = () => {
         if (brand === "Edufly") {
             navigate("/");
         }
+    }
+    const handelSerchButtonClick = () =>{
+        setData(null);
+        navigate("/search");
     }
 
     return (
@@ -203,7 +207,7 @@ const Navigation = ({ name, location }) => {
                 <div className="navbar-end">
                     {location === '/'
                         ? <NavLink className="btn" to="/registration">Register</NavLink>
-                        : <NavLink className="btn" onClick={() => setData(null)} to="/search">Search</NavLink>
+                        : <button className="btn" onClick={handelSerchButtonClick}>Search</button>
                     }
 
                     {/* profile */}

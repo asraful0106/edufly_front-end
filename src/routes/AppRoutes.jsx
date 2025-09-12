@@ -97,6 +97,7 @@ import { AuthProvider } from '../contextapi/AuthContext';
 import { RequireAuth, RequireRole } from './gurd';
 import TeacherDashboard from '../sharedComponent/dashTeacherDashbord/TeacherDashboard';
 import StudentDashboard from '../sharedComponent/studentDashboard/studentDashboard';
+import LandingPage from '../pages/landingPage/LandingPage';
 
 const AppRoutes = () => {
     return (
@@ -104,7 +105,8 @@ const AppRoutes = () => {
             <AuthProvider>
                 <Routes>
                     <Route path="/" element={<MainLayout />}>
-                        <Route index element={<SearchPage />} />
+                        <Route index element={<LandingPage />} />
+                        <Route path="search" element={<SearchPage />} />
                         <Route path="registration" element={<Registration />} />
                         <Route path="login" element={<Login />} />
                         <Route path=":id" element={<HomePage />}>

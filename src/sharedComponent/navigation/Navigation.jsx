@@ -1,6 +1,6 @@
 // src/components/navigation/Navigation.jsx
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import EiiContext from '../../contextapi/eiiSearch/EiiSearchContext';
 import { useAuth } from '../../contextapi/AuthContext';
 import './navigation.css';
@@ -128,6 +128,13 @@ const Navigation = ({ name, location }) => {
     // Priority: teacher > student > institution > default
     const avatarSrc = tAvatarUrl || sAvatarUrl || iAvatarUrl || DEFAULT_AVATAR;
 
+    const navigate = useNavigate();
+    const handleEduflyBrandClick = () => {
+        if (brand === "Edufly") {
+            navigate("/");
+        }
+    }
+
     return (
         <nav>
             <div
@@ -135,7 +142,7 @@ const Navigation = ({ name, location }) => {
                 style={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}
             >
                 {/* START */}
-                <div className="navbar-start">
+                <div onClick={ handleEduflyBrandClick} className="navbar-start">
                     {/* mobile menu */}
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -196,7 +203,7 @@ const Navigation = ({ name, location }) => {
                 <div className="navbar-end">
                     {location === '/'
                         ? <NavLink className="btn" to="/registration">Register</NavLink>
-                        : <NavLink className="btn" onClick={() => setData(null)} to="/">Search</NavLink>
+                        : <NavLink className="btn" onClick={() => setData(null)} to="/search">Search</NavLink>
                     }
 
                     {/* profile */}

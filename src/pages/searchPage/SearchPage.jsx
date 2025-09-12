@@ -18,7 +18,7 @@ const SearchPage = () => {
         AOS.refresh();
     }, []);
     // ** Manage Search Options **
-    const [isAdvanceSearch, setIsAdvanceSearch] = useState(false);
+    const [isAdvanceSearch, setIsAdvanceSearch] = useState(true);
 
     const handelSearchClick = () => {
         setIsAdvanceSearch(false);

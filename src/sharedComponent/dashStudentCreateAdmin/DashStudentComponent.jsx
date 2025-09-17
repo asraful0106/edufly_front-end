@@ -705,7 +705,7 @@ const DashStudentComponent = () => {
                 )}
 
                 {Array.isArray(fullStudentData) && fullStudentData.length > 0 && !fullStudentError && !fullStudentLoading && (
-                    <div className='grid grid-cols-4 gap-6'>
+                    <div className='grid grid-cols-3 gap-6'>
                         {fullStudentData.map((studentData) => (
                             <EachDashStudent
                                 key={studentData._id || studentData.id}
